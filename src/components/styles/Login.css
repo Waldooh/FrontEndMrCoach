@@ -1,0 +1,33 @@
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #9103CF !important;
+    border-color: #9103CF !important;
+}
+
+.userIcon-img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 2rem;
+}
+
+.launch-img {
+    width: 90%;
+}
+
+.reset {
+    color: black;
+    justify-content: left;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* .loginCard {
+    align-self: center;
+} */

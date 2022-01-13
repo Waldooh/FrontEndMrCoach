@@ -7,7 +7,7 @@ const Formulario = () => {
   const [formSended, setFormSended] = useState(false)
 
   return (
-    <>
+    <div className='contenedor'>
       <Formik
         initialValues={{
           nombre: "",
@@ -39,6 +39,7 @@ const Formulario = () => {
         }}
       > 
         {({errors}) => (
+
           <Form className='formulario'>
             <div>
               <label htmlFor="nombre">Nombre</label>
@@ -89,7 +90,7 @@ const Formulario = () => {
             </div>
 
             <div>
-              <Field name="description" as="textarea" placeholder="Leave a description" />
+              <Field name="description" as="textarea" placeholder="Leave a description..." />
             </div>
             
             <button type={"submit"}>Enviar</button>
@@ -97,7 +98,7 @@ const Formulario = () => {
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 }
 

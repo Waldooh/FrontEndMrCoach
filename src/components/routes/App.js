@@ -1,11 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Formulario from '../pages/Form';
+import Login from '../pages/Login';
+import '../../index.css'
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Formulario />} />
+      <Route path="/" element={<Login />} />
     </Routes>
   );
 }
