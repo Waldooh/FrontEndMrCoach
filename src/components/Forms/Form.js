@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../Styles/Form.css';
+import '../styles/Form.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const Formulario = () => {

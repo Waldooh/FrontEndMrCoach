@@ -19,13 +19,21 @@
     width: 90%;
 }
 
-.reset {
-    color: black;
-    justify-content: left;
+.formulario .error {
+	color: #e92b2d;
+	font-weight: 600;
+	font-size: 12px;
 }
 
 a {
     text-decoration: none;
+    color: rgb(51, 51, 255);
+}
+
+.userIcon {
+    color: #9103CF;
+    font-weight: 100;
+    font-size: 100px;
 }
 
 /* .loginCard {

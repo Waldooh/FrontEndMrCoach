@@ -1,0 +1,16 @@
+.Signup-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid salmon;
+}
+
+.form-box {
+    box-shadow: 0px 0px, 15px -5px black;
+}
+
+.card-signup {
+    display: flex;
+    justify-content: center;
+}
