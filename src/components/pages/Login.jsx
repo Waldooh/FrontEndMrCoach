@@ -76,8 +76,9 @@ const Login = () => {
 
                 <hr />
                 <div className="text-right mt-3">
-                  <small>Are you new here?</small>
-                  <a href="/signup"><small className="reset"> Register now</small></a>
+                  <small className="reset">Are you new here?
+                    <a href="/signup"> Register now</a>
+                  </small>
                 </div>
               </Form>
               )}

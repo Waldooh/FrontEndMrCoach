@@ -134,6 +134,9 @@ const SignupForm = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
           </Form>
         </Card.Body>
       </Card>
