@@ -1,9 +1,19 @@
-.Container {
+/* .Container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid salmon;
+} */
+.bg-signup-poster {
+    background-image: url(/src/img/AthletPoster.png);
+    background-position: 900px;
+    background-size: cover;
+}
+
+.bg-form-box {
+    background-color: white;
+    box-shadow: 0px 0px 25px -5px black;
 }
 
 .form-box {
