@@ -5,9 +5,9 @@ import { Formik } from 'formik';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import loginIcon from "../../img/userColor.png";
 import secureLogin from "../../img/SecureLogin.svg";
-import "../styles/Login.css";
+import "../styles/PlantillaLogin.css";
 
-const Login = () => {
+const PlantillaLogin = () => {
 
   const SignupSchema = yup.object().shape({
     lastName: yup.string().required(),
@@ -99,7 +99,7 @@ const Login = () => {
 
 
 
-  export default Login
+  export default PlantillaLogin
   
 
 

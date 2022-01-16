@@ -1,0 +1,35 @@
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.userIcon-img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 2rem;
+}
+
+.launch-img {
+    width: 90%;
+}
+
+.formulario .error {
+	color: #e92b2d;
+	font-weight: 600;
+	font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(51, 51, 255);
+}
+
+.userIcon {
+    color: #9103CF;
+    font-weight: 100;
+    font-size: 100px;
+}
+
+/* .loginCard {
+    align-self: center;
+} */

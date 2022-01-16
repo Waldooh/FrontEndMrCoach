@@ -131,7 +131,7 @@ const SignupPage = () => {
             </ul>
 
             <Button variant="primary" type="submit" disabled={Object.values(passwordError).includes(false)}>
-              Signup
+              Sign Up
             </Button>
 
           </Form>
