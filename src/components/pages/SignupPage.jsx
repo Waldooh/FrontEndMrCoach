@@ -1,25 +1,27 @@
 import { Formik, Form } from 'formik';
 import { React, useState, useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../styles/Signup.css';
 
 const initialState = {
-  name: "",
+  firstName: "",
   lastName: "",
   email: "",
   password: "",
-  confirmPass: "",
 };
 const passVerification = {
   isLenthy: false,
   hasUpper: false,
   // hasLower: false,
   hasNumber: false,
+  // hasSymbol: false,
   confirmPass: false,
 };
 
 const SignupPage = () => {
 
+  // const history = useHistory();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
 
@@ -35,6 +37,7 @@ const SignupPage = () => {
       const hasUpper = /[A-Z]/.test(value);
       // const hasLower = /[a-z]/.test(value);
       const hasNumber = /[0-9]/.test(value);
+      // const hasSymbol = /[@,#,$,%,&]/.test(value);
       
       setPasswordError({ 
         ...passwordError,
@@ -42,6 +45,7 @@ const SignupPage = () => {
         hasUpper,
         // hasLower,
         hasNumber,
+        // hasSymbol,
       });
     }
 
@@ -53,8 +57,24 @@ const SignupPage = () => {
     }
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
+
+    const { firstName, lastName, email, password } = newUser
+    let item = { firstName, lastName, email, password };
+
+// FETCH PARA REGISTRO
+    let result = await fetch("http://localhost:8000/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(item)
+    });
+    result = await result.json();
+    localStorage.getItem("user-info", JSON.stringify(result)) // <-- ¿Qué esta pasando aquí???
+    // history.push("/accountSelect");
   };
 
   return (
@@ -69,18 +89,18 @@ const SignupPage = () => {
             <Form className="p-4" onSubmit={handleOnSubmit}>
               <div className="d-flex justify-content-between">
                 <div>
-                  <label for="name" className="form-label">First Name:</label>
+                  <label htmlFor="name" className="form-label">First Name:</label>
                   <input 
                     type="text" 
                     className="form-control" 
-                    name="name" 
-                    value={newUser.name} 
+                    name="firstName" 
+                    value={newUser.firstName}
                     onChange={handleOnChange}
                     placeholder="Your first name *" 
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="name" className="form-label">Last Name:</label>
+                  <label htmlFor="name" className="form-label">Last Name:</label>
                   <input 
                     type="text" 
                     className="form-control" 
@@ -92,7 +112,7 @@ const SignupPage = () => {
                 </div>
               </div>
               <div className="mb-3">
-                <label for="email" className="form-label">Email Address:</label>
+                <label htmlFor="email" className="form-label">Email Address:</label>
                 <input 
                   type="email" 
                   className="form-control" 
@@ -103,7 +123,7 @@ const SignupPage = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="password" className="form-label">Password:</label>
+                <label htmlFor="password" className="form-label">Password:</label>
                 <input 
                   type="password" 
                   className="form-control" 
@@ -114,7 +134,7 @@ const SignupPage = () => {
                 />
               </div>
               <div>
-                <label for="password" className="form-label">Confirm Password:</label>
+                <label htmlFor="password" className="form-label">Confirm Password:</label>
                 <input 
                   type="password" 
                   className="form-control" 
@@ -133,12 +153,13 @@ const SignupPage = () => {
                   <li className={passwordError.hasUpper ? "text-success" : "text-danger"}>At least one upper case</li>
                   {/* <li className={passwordError.hasLower ? "text-success" : "text-danger"}>At least one lower case</li> */}
                   <li className={passwordError.hasNumber ? "text-success" : "text-danger"}>At least one number</li>
+                  {/* <li className={passwordError.hasSymbol ? "text-success" : "text-danger"}>At least one special character i.e @ # $ % & </li> */}
                 </ul>
               </small>
               <div className="d-flex justify-content-between mb-4 form-check">
                 <input type="checkbox" name="connected" className="form-check-input" />
                 <small>
-                  <label for="connected" className="form-check-label">By signing up I agree with <a href="*">Terms & Conditions.</a></label>
+                  <label htmlFor="connected" className="form-check-label">By signing up I agree with <a href="*">Terms & Conditions.</a></label>
                 </small>
               </div>
               <div>
