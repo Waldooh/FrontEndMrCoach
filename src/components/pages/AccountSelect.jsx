@@ -29,6 +29,7 @@ const AccountSelect = () => {
           </span>
         </label>
       </div>
+      <button type="submit" className="continue-btn btn btn-primary my-5">Continue</button>
           {/* <img src="https://img.icons8.com/fluency/96/000000/whistle.png"/>
         <img src="https://img.icons8.com/fluency/96/000000/dumbbell.png"/> */}
     </div>
