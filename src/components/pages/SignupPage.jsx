@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 import { React, useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router';
 import '../styles/Signup.css';
 
 const initialState = {
@@ -21,7 +21,7 @@ const passVerification = {
 
 const SignupPage = () => {
 
-  // const history = useHistory();
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
 
@@ -74,7 +74,7 @@ const SignupPage = () => {
     });
     result = await result.json();
     localStorage.getItem("user-info", JSON.stringify(result)) // <-- ¿Qué esta pasando aquí???
-    // history.push("/accountSelect");
+    navigate("/accountSelect");
   };
 
   return (

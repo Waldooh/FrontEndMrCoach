@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Formik, Form, ErrorMessage } from 'formik';
-// import LogoTest from '../../img/MrBeast-Logo.png';
 import '../styles/Login.css';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const history = useHistory();
+  const navigate = useNavigate();
   // useEffect(() => {
   //   if(localStorage.getItem("user-info")) {
-  //     history.push("/home")
+  //     navigate("/accountSelect");
   //   }
   // }, []);
 
@@ -29,7 +28,7 @@ const Login = () => {
     });
     result = await result.json()
     localStorage.setItem("user-info", JSON.stringify(result))
-    // history.push("/home");
+    navigate("/accountSelect"); // Falta agregar validación de autorización previa (Unauthorize)
   };
 
   return (

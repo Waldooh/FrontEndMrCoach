@@ -4,5 +4,12 @@
 
 
 body {
-    background-color: rgb(10, 248, 169);
+    background: #FFAB00;
+    background: linear-gradient(to right, #FFAB00, #FF7A00);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #7209B7 !important;
+    border-color: #9103CF !important;
 }

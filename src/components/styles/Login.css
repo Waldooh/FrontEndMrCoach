@@ -1,7 +1,4 @@
-body {
-    background: #FFAB00;
-    background: linear-gradient(to right, #FFAB00, #FF7A00);
-}
+
 
 .login-box {
     background-color: white;
@@ -13,10 +10,4 @@ body {
     background-image: url(/src/img/LoginUserModel.png);
     background-position: center center;
     background-size: cover;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #7209B7 !important;
-    border-color: #9103CF !important;
 }
