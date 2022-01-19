@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Formik, Form, ErrorMessage } from 'formik';
-import '../styles/Login.css';
+import '../styles/Login.scss';
+import MrLogo from '../components/img/MrCoach-Logo.png';
 import { useNavigate } from 'react-router';
 
 const Login = () => {
@@ -18,17 +19,26 @@ const Login = () => {
   const handleLogin = async () => {
     console.warn("Enviado", email, password);
     let item = { email, password };
-    let result = await fetch("http://localhost:8000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(item)
-    });
-    result = await result.json()
-    localStorage.setItem("user-info", JSON.stringify(result))
-    navigate("/accountSelect"); // Falta agregar validación de autorización previa (Unauthorize)
+    try {
+      let result = await fetch("http://localhost:8000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(item)
+      });
+      result = await result.json()
+      if(result.ok) {
+        localStorage.setItem("user-info", JSON.stringify(result.payload))
+        navigate("/accountSelect");
+      } else {
+        // Cachar errores y añadir lógica faltante
+      }
+
+    } catch {
+      navigate("/errorPage");
+    }
   };
 
   return (
@@ -38,7 +48,10 @@ const Login = () => {
         
         </Col>
         <Col className="p-5">
-          <h2 className="fw-bold text-center py-5">Welcome Mr.</h2>
+          <div className="text-right">
+            <img className="logo-mrcoach" src={MrLogo} alt="Logo" />
+          </div>
+          <h2 className="fw-bold text-center pt-3 pb-5">Welcome Mr.</h2>
           <Formik
             initialValues={{
               email: "",

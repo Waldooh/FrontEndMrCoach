@@ -1,14 +1,19 @@
-/* .Container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid salmon;
-} */
+
+
 .bg-signup-poster {
-    background-image: url(/src/img/AthletPoster.png);
+    background-image: url(/src/components/img/AthletPoster.png);
     background-position: 900px;
     background-size: cover;
+}
+
+.bg-signup-poster::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .bg-form-box {

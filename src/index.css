@@ -8,6 +8,10 @@ body {
     background: linear-gradient(to right, #FFAB00, #FF7A00);
 }
 
+.logo-mrcoach {
+    width: 60px;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #7209B7 !important;

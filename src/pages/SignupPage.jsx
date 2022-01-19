@@ -3,6 +3,7 @@ import { React, useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import '../styles/Signup.css';
+import MrLogo from '../components/img/MrCoach-Logo.png';
 
 const initialState = {
   firstName: "",
@@ -84,7 +85,10 @@ const SignupPage = () => {
         
         </Col>
         <Col className="border">
-          <h1 className="fw-bold text-center py-3">Create Account</h1>
+          <div className="d-flex justify-content-between px-4 pt-4 mt-2">
+            <h1 className="fw-bold">Register</h1>
+            <img className="logo-mrcoach" src={MrLogo} alt="Logo" />
+          </div>
           <Formik>
             <Form className="p-4" onSubmit={handleOnSubmit}>
               <div className="d-flex justify-content-between">
