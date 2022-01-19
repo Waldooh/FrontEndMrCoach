@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Formik, Form, ErrorMessage } from 'formik';
-import '../styles/Login.module.scss';
+import '../styles/Login.scss';
 import MrLogo from '../components/img/MrCoach-Logo.png';
 import { useNavigate } from 'react-router';
 
@@ -29,8 +29,12 @@ const Login = () => {
         body: JSON.stringify(item)
       });
       result = await result.json()
-      localStorage.setItem("user-info", JSON.stringify(result))
-      navigate("/accountSelect");
+      if(result.ok) {
+        localStorage.setItem("user-info", JSON.stringify(result.payload))
+        navigate("/accountSelect");
+      } else {
+        // Cachar errores y añadir lógica faltante
+      }
 
     } catch {
       navigate("/errorPage");
