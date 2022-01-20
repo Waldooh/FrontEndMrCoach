@@ -31,13 +31,14 @@ const Login = () => {
       result = await result.json()
       if(result.ok) {
         localStorage.setItem("user-info", JSON.stringify(result.payload))
+        console.log("result:", result.payload)
         navigate("/accountSelect");
       } else {
-        // Cachar errores y añadir lógica faltante
+        console.log("result", result)
+        alert(result.error);
       }
-
     } catch {
-      navigate("/errorPage");
+      alert("El servidor no se está corriendo");
     }
   };
 
@@ -68,7 +69,7 @@ const Login = () => {
               return mistakes;
             }}
           >
-            {({errors, props}) => (
+            {({errors, error, props}) => (
             <Form>
               <div className="mb-4">
                 <label for="email" className="form-label">Email:</label>
@@ -99,6 +100,10 @@ const Login = () => {
                 <label for="connected" className="form-check-label">Remember me</label>
                 <span className="forgot-pass"><a href="*"><i><small>Forgot password?</small></i></a></span>
               </div>
+              <ErrorMessage name="email" component={() => (
+                  <small><div className="error text-danger">{error}</div></small>
+                )} 
+                /> 
               <div>
                 <button type="submit" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
               </div>

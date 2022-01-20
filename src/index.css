@@ -6,6 +6,7 @@
 body {
     background: #FFAB00;
     background: linear-gradient(to right, #FFAB00, #FF7A00);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .logo-mrcoach {
