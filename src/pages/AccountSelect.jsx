@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router';
 // import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../styles/AccountType.scss';
@@ -6,7 +6,7 @@ import '../styles/AccountType.scss';
 
 const AccountSelect = () => {
 
-  const [typeSelect, setTypeSelect] = useState("alumno");
+  // const [typeSelect, setTypeSelect] = useState("alumno");
   const navigate = useNavigate();
 
   const handlerSelect = (e) => {
@@ -40,14 +40,13 @@ const AccountSelect = () => {
     }
   }
 
-
   return (
     <div className="main-container">
       <h2>Please choose an account type</h2>
       <div className="radio-buttons">
-        <label className="custom-radio">
+        <label className="custom-btn">
           <input type="radio" name="radio" value="alumno" onClick={handlerSelect} checked />
-          <span className="radio-btn">
+          <span className="radio-button">
             <span className="material-icons-outlined">check</span>
             <div className="accounts-icon">
               <span className="material-icons-outlined">fitness_center</span>
@@ -55,9 +54,9 @@ const AccountSelect = () => {
             </div>
           </span>
         </label>
-        <label className="custom-radio">
+        <label className="custom-btn">
           <input type="radio" name="radio" value="entrenador" onClick={handlerSelect} />
-          <span className="radio-btn">
+          <span className="radio-button">
             <span className="material-icons-outlined">check</span>
               <div className="accounts-icon">
                 <span className="material-icons-outlined">sports</span>
