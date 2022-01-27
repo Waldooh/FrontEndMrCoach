@@ -1,0 +1,148 @@
+
+.body-menu {
+    background-color: bisque;
+    height: 100vh;
+}
+
+.side-menu {
+    position: fixed;
+    background: #7209B7;
+    width: 250px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    transition: width 0.2s ease-in;
+}
+
+.side-menu.isactive {
+    width: 72px;
+}
+
+.side-menu .top-section {
+    position: relative;
+}
+
+.side-menu .top-section .logo {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.side-menu .top-section .logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.side-menu .top-section .toggle-menu-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.side-menu.isactive .top-section .toggle-menu-btn {
+    right: -50px;
+}
+
+// --------- Main Navigation Menu -----------------
+
+.side-menu .navigation {
+    padding-inline: 0;
+}
+
+.side-menu .navigation .main-menu .menu-item {
+    padding-block: 5px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.side-menu .navigation .main-menu .menu-item .menu-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    // background-color: aqua;
+    line-height: 55px;
+    text-align: center;
+}
+
+.side-menu .navigation .main-menu .menu-item:hover {
+    color: #FFCF00;
+    background-color: #a5a3a75d;
+    border-radius: 5px;
+}
+
+// Text menu
+.side-menu .navigation .main-menu .menu-item > span {
+    position: absolute;
+    display: inline-block;
+    margin-left: 8px;
+    line-height: 43px;
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+}
+
+.side-menu.isactive .navigation .main-menu .menu-item > span {
+    opacity: 0;
+}
+
+// Icon Menu
+.side-menu .navigation .main-menu .menu-item .menu-icon > span {
+    font-size: 26px;
+}
+
+
+// ---------- Footer Badge Menú -----------------
+
+.footer-menu {
+    background: #89878a;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.footer-menu .avatar {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 100%;
+    display: inline-block;
+}
+
+.footer-menu .avatar img {
+    max-width: 100%;
+    min-height: 100%;
+}
+
+.footer-menu .user-info {
+    display: inline-block;
+    margin: 5px 10px;
+    color: #fff;
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+}
+
+.side-menu.isactive .footer-menu .user-info {
+    opacity: 1;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.footer-menu .user-info h5 {
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 400;
+}
+.footer-menu .user-info p {
+    margin-bottom: 0;
+    font-size: 11px;
+    font-weight: 100;
+}

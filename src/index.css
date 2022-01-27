@@ -7,7 +7,7 @@ body {
     background: #FFAB00;
     background: linear-gradient(to right, #FFAB00, #FF7A00);
     font-family: 'Poppins', sans-serif;
-    font-family: 'Reem Kufi', sans-serif;
+    /* font-family: 'Reem Kufi', sans-serif; */
 }
 
 .logo-mrcoach {
