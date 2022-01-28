@@ -1,41 +1,43 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import '../../../styles/SliderForm.scss';
+
 
 const CoachForm = () => {
 
-  window.onload = () => {
-    const tab_switchers = document.querySelectorAll('[data-switcher]');
+  const [activeTab, setActiveTab] = useState(0);
 
-    for (let i=0; i<tab_switchers.length; i++) {
-      const tab_switcher = tab_switchers[i];
-      const page_id = tab_switcher.dataset.tab;
-
-      tab_switcher.addEventListener('click', () => {
-        document.querySelector('.tabs .tab.is-active').classList.remove('is-active');
-        tab_switcher.parentNode.classList.add('is-active');
-
-        SwitchPage(page_id);
-      });
+  const switchPage = (event) => {
+    const btnSwitch = event.target.id;
+    if (btnSwitch === "continue" && activeTab < 7) {
+      setActiveTab(activeTab + 1);
+    }
+    if (btnSwitch === "back" && activeTab > 1) {
+      setActiveTab(activeTab - 1);
     }
   };
-  const SwitchPage = (page_id) => {
-    console.log(page_id)
-    const current_page = document.querySelector('.pages .page.is-active');
-    current_page.classList.remove('is-active');
-
-    const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`);
-    next_page.classList.add('is-active');
-  }; 
 
   return (
     <div className="body">
       <div className="main">
         <h1>Coach Form</h1>
         <div className="pages">
-
-{/* ---------------- Preguntas del formulario (PAG. 1)------------------- */}
-          <div className="page is-active" data-page="1">
-            <h2>¿Cuál es tu principal objetivo?</h2>
+{/* ---------------- Preguntas del formulario (PAG. 0)------------------- */}
+          <div className={`page ${activeTab === 0 ? "is-active" : ""}`} data-page="1">
+            <h2>Hola,</h2>
+            <p>Bienvenido al equipo Mr. Coach, porfavor completa el siguiente formulario y comienza a usar las herramientas que ofrecemos para tí.</p>
+            {/* <div className="radio-btns">
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Continuar</h3>
+                </span>
+              </label>
+            </div> */}
+          </div>
+{/* ---------------- (PAG. 1)------------------- */}
+          <div className={`page ${activeTab === 1 ? "is-active" : ""}`} data-page="1">
+            <h2>Datos personales</h2>
             <div className="radio-btns">
               <label className="custom-radio">
                 <input type="radio" name="radio" checked />
@@ -44,7 +46,7 @@ const CoachForm = () => {
                   <h3>Bajar de peso</h3>
                 </span>
               </label>
-              <label className="custom-radio"> 
+              <label className="custom-radio">
                 <input type="radio" name="radio" />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -68,11 +70,11 @@ const CoachForm = () => {
             </div>
           </div>
 {/* ---------------- (PAG. 2)------------------- */}
-          <div className="page" data-page="2">
+          <div className={`page ${activeTab === 2 ? "is-active" : ""}`} data-page="2">
             <h2>¿Qué tan seguido realizas actividad física?</h2>
-            <div className="radio-btns">
-              <label className="custom-radio">
-                <input type="radio" name="radio" checked />
+            <div className="radio-btns"> 
+              <label className="custom-radio"> 
+                <input type="text" name="radio" checked />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
                   <h3>Nothing</h3>
@@ -85,7 +87,7 @@ const CoachForm = () => {
                   <h3>Fiew days a month</h3>
                 </span>
               </label>
-              <label className="custom-radio">
+              <label className="custom-radio"> 
                 <input type="radio" name="radio" />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -101,9 +103,8 @@ const CoachForm = () => {
               </label>
             </div>
           </div>
-
 {/* ---------------- (PAG. 3)------------------- */}
-          <div className="page" data-page="3">
+          <div className={`page ${activeTab === 3 ? "is-active" : ""}`} data-page="3">
             <h2>Selecciona tu sistema métrico</h2>
             <div className="radio-btns">
               <label className="custom-radio">
@@ -123,8 +124,35 @@ const CoachForm = () => {
             </div>
           </div>
 {/* ---------------- (PAG. 4)------------------- */}
-          <div className="page" data-page="4">
+          <div className={`page ${activeTab === 4 ? "is-active" : ""}`} data-page="4">
             <h2>Indica tu edad, peso y altura</h2>
+            <div className="radio-btns">
+              <label className="custom-radio">
+                <input type="radio" name="radio" checked />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Estatura: </h3>
+                </span>
+              </label>
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Peso: </h3>
+                </span>
+              </label>
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Edad: </h3>
+                </span>
+              </label>
+            </div>
+          </div>
+{/* ---------------- (PAG. 5)------------------- */}
+          <div className={`page ${activeTab === 5 ? "is-active" : ""}`} data-page="5">
+            <h2>Selecciona tu género</h2>
             <div className="radio-btns">
               <label className="custom-radio">
                 <input type="radio" name="radio" checked />
@@ -149,40 +177,95 @@ const CoachForm = () => {
               </label>
             </div>
           </div>
-
+{/* ---------------- (PAG. 6)------------------- */}
+          <div className={`page ${activeTab === 6 ? "is-active" : ""}`} data-page="6">
+            <h2>¿Cuánta experiencia tienes en entrenamientos de fuerza?</h2>
+            <div className="radio-btns">
+              <label className="custom-radio">
+                <input type="radio" name="radio" checked />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Nada</h3>
+                </span>
+              </label>
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Algunos meses </h3>
+                </span>
+              </label>
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Menos de 5 años</h3>
+                </span>
+              </label>
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>5+ años</h3>
+                </span>
+              </label>
+            </div>
+          </div>
+{/* ---------------- (PAG. 7  Registro Completo)------------------- */}
+          <div className={`page ${activeTab === 7 ? "is-active" : ""}`} data-page="7">
+            <h2>¡Felicitaciones!</h2>
+            <p>Estás listo para comenzar a lograr tus metas con tu coach ideal.</p>
+            {/* <div className="radio-btns">
+              <label className="custom-radio">
+                <input type="radio" name="radio" />
+                <span className="radio-btn">
+                  <span className="material-icons-outlined">check</span>
+                  <h3>Continuar</h3>
+                </span>
+              </label>
+            </div> */}
+          </div>
+{/* -------------- Footer Navigator ------------------- */}
           <div className="footer-nav">
 
-            <button>
+            <button id="continue" onClick={switchPage}>
               Continue 
               <span class="material-icons-outlined">chevron_right</span>
             </button>
 
             <div className="nav">
               <ul className="tabs">
-                <li className="tab is-active">
-                <a data-switcher data-tab="1">1</a>
+                <li className={`tab ${activeTab === 1 ? "is-active": ""}`}>
+                  <a data-tab="1"></a>
                 </li>
-                <li className="tab">
-                <a data-switcher data-tab="2">2</a>
+                <li className={`tab ${activeTab === 2 ? "is-active": ""}`}>
+                  <a data-tab="2"></a>
                 </li>
-                <li className="tab">
-                <a data-switcher data-tab="3">3</a>
+                <li className={`tab ${activeTab === 3 ? "is-active": ""}`}>
+                  <a data-tab="3"></a>
                 </li>
-                <li className="tab">
-                <a data-switcher data-tab="4">4</a>
+                <li className={`tab ${activeTab === 4 ? "is-active": ""}`}>
+                  <a data-tab="4"></a>
+                </li>
+                <li className={`tab ${activeTab === 5 ? "is-active": ""}`}>
+                  <a data-tab="5"></a>
+                </li>
+                <li className={`tab ${activeTab === 6 ? "is-active": ""}`}>
+                  <a data-tab="6"></a>
+                </li>
+                <li className={`tab ${activeTab === 7 ? "is-active": ""}`}>
+                  <a data-tab="7"></a>
                 </li>
               </ul>
             </div>
 
-            <button>
+            <button id="back" onClick={switchPage}>
               <span class="material-icons-outlined">chevron_left</span>
               Back
             </button>
           </div>
-
         </div>
       </div>
-
     </div>
   )
 }

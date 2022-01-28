@@ -19,3 +19,12 @@ body {
     background-color: #7209B7 !important;
     border-color: #9103CF !important;
 }
+
+.container-dashboard {
+    margin-left: 253px;
+    transition: margin-left 0.2s ease-in;
+}
+
+.container-dashboard.isactive {
+    margin-left: 75px;
+}

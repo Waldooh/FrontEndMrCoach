@@ -22,21 +22,19 @@
     display: block;
 }
 
-.nav .tabs .tab a[data-switcher] {
-    // display: block;
-    padding: 3px 10px;
-    text-decoration: none;
+.nav .tabs .tab a {
+    padding: 0 4px;
+    margin-right: 2px;
+    margin-left: 2px;
+    height: 5px;
     color: #fff;
-    background-color: #000000;
+    background-color: #424242;
     cursor: pointer;
+    font-size: 6px;
     border-radius: 100%;
 }
 
-.nav .tabs .tab:hover a[data-switcher] {
-    background-color: #F7A800;
-}
-
-.nav .tabs .tab.is-active a[data-switcher] {
+.nav .tabs .tab.is-active a {
     background-color: #9103CF;
     font-weight: 700;
 }
@@ -70,7 +68,7 @@
 .pages .footer-nav {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-top: 25px;
 }
 
