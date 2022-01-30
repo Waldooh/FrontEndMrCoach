@@ -22,18 +22,9 @@ const StudentForm = () => {
         <h1>Student  Form</h1>
         <div className="pages">     
 {/* ---------------- Preguntas del formulario (PAG. 0)------------------- */}
-          <div className={`page ${activeTab === 0 ? "is-active" : ""}`} data-page="1">
+          <div className={`page ${activeTab === 0 ? "is-active" : ""} p-5`} data-page="1">
             <h2>Hola,</h2>
             <p>Gracias por registrarte en Mr. Coach, a continuaciónte haremos algunas preguntas para asegurarnos de que cumplas tus metas.</p>
-            {/* <div className="radio-btns">
-              <label className="custom-radio">
-                <input type="radio" name="radio" />
-                <span className="radio-btn">
-                  <span className="material-icons-outlined">check</span>
-                  <h3>Continuar</h3>
-                </span>
-              </label>
-            </div> */}
           </div>
 {/* ---------------- (PAG. 1)------------------- */}
           <div className={`page ${activeTab === 1 ? "is-active" : ""}`} data-page="1">
@@ -212,23 +203,14 @@ const StudentForm = () => {
             </div>
           </div>
 {/* ---------------- (PAG. 7  Registro Completo)------------------- */}
-          <div className={`page ${activeTab === 7 ? "is-active" : ""}`} data-page="7">
+          <div className={`page ${activeTab === 7 ? "is-active" : ""} p-5`} data-page="7">
             <h2>¡Felicitaciones!</h2>
             <p>Estás listo para comenzar a lograr tus metas con tu coach ideal.</p>
-            {/* <div className="radio-btns">
-              <label className="custom-radio">
-                <input type="radio" name="radio" />
-                <span className="radio-btn">
-                  <span className="material-icons-outlined">check</span>
-                  <h3>Continuar</h3>
-                </span>
-              </label>
-            </div> */}
           </div>
 {/* -------------- Footer Navigator ------------------- */}
           <div className="footer-nav">
 
-            <button id="continue" onClick={switchPage}>
+            <button className="pl-2.2" id="continue" onClick={switchPage}>
               Continue 
               <span class="material-icons-outlined">chevron_right</span>
             </button>

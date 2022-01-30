@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Reem+Kufi:wght@400;700&display=swap');
 
 body {
+    /* background: #111b27; */
     background: #FFAB00;
     background: linear-gradient(to right, #FFAB00, #FF7A00);
     font-family: 'Poppins', sans-serif;

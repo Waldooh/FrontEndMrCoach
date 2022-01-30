@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import '../styles/SideMenu.scss';
-import logo from './img/MrCoach-Simbol.png';
+import logo from './img/mrCoach-simbol.png';
 import yo from './img/Yo.jpg';
 
 

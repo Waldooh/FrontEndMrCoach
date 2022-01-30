@@ -22,7 +22,7 @@ const passVerification = {
 
 const SignupPage = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
 
@@ -75,7 +75,7 @@ const SignupPage = () => {
     });
     result = await result.json();
     localStorage.getItem("user-info", JSON.stringify(result)) // <-- ¿Qué esta pasando aquí???
-    navigate("/accountSelect");
+    // navigate("/accountSelect");
   };
 
   return (
@@ -174,7 +174,7 @@ const SignupPage = () => {
                 > Get Started
                 </button>
                 <small>
-                  <div className="text-center mt-3">Already a member? <a href="/">Sign in</a></div>
+                  <div className="text-center mt-3">Already a member? <a href="/login">Sign in</a></div>
                 </small>
               </div>
             </Form>
