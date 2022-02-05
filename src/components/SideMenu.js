@@ -19,7 +19,10 @@ function SideMenu(props) {
     <div className={`side-menu ${isactive ? "isactive" : ""}`}>
       <div className="top-section">
         <div className="logo">
-          <img src={logo} alt='MrCoach' />
+          {!isactive
+            ? <img src={logo} alt='MrCoach' />
+            : ""
+          }
         </div>
         <div onClick={()=>{setIsactive(!isactive)}} className="toggle-menu-btn">
           {!isactive 
@@ -66,7 +69,7 @@ function SideMenu(props) {
             </div>
             <span>Chat</span>
           </NavLink>
-
+          
         </Row>
       </Col>
       <div className="footer-menu">

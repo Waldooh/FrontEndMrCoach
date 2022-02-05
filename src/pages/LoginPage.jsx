@@ -29,10 +29,11 @@ const Login = () => {
         body: JSON.stringify(item)
       });
       result = await result.json()
+
       if(result.ok) {
         localStorage.setItem("user-info", JSON.stringify(result.payload))
         console.log("result:", result.payload)
-        navigate("/accountSelect");
+        navigate("/landing");
       } else {
         console.log("result", result)
         alert(result.error);

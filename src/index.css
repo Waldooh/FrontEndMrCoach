@@ -22,10 +22,10 @@ body {
 }
 
 .container-dashboard {
-    margin-left: 253px;
-    transition: margin-left 0.2s ease-in;
+    margin-left: 250px;
+    transition: margin-left 0.15s ease-in;
 }
 
 .container-dashboard.isactive {
-    margin-left: 75px;
+    margin-left: 72px;
 }

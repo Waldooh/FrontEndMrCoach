@@ -1,17 +1,17 @@
 
-.body-menu {
-    background-color: bisque;
-    height: 100vh;
-}
+// .body-menu {
+//     background-color: rgb(240, 162, 68);
+//     height: 100vh;
+// }
 
 .side-menu {
     position: fixed;
-    background: #7209B7;
+    background: #000000f3;
     width: 250px;
     height: 100%;
     box-sizing: border-box;
     padding: 20px 15px;
-    transition: width 0.2s ease-in;
+    transition: width 0.15s ease-in;
 }
 
 .side-menu.isactive {
@@ -36,6 +36,7 @@
 
 .side-menu .top-section .toggle-menu-btn {
     position: absolute;
+    color: #fff;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
@@ -43,7 +44,7 @@
 }
 
 .side-menu.isactive .top-section .toggle-menu-btn {
-    right: -50px;
+    right: 10px;
 }
 
 // --------- Main Navigation Menu -----------------

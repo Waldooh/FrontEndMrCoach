@@ -1,9 +1,9 @@
 import { Formik, Form } from 'formik';
 import { React, useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import '../styles/Signup.css';
-import MrLogo from '../components/img/MrCoach-Logo.png';
+import MrLogo from '../components/img/mrCoach-simbol.png';
 
 const initialState = {
   firstName: "",
@@ -20,11 +20,12 @@ const passVerification = {
   confirmPass: false,
 };
 
-const SignupPage = () => {
+const SignupPage = (props) => {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
+  let { accountType } = useParams();
 
   useEffect(() => {}, [newUser]);
 
@@ -61,25 +62,50 @@ const SignupPage = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    const { firstName, lastName, email, password } = newUser
-    let item = { firstName, lastName, email, password };
+    const userData = { ...newUser, account: accountType };
+    const { firstName, lastName, email, password, account } = userData;
+    let item = { firstName, lastName, email, password, account };
+    console.log(item)
 
+    try {
+      let result = await fetch("http://localhost:8000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item)
+      });
+      result = await result.json();
+      if(result.payload.userCreated.account === "alumno") {
+        navigate("/signup/studentform");
+      } else if (result.payload.userCreated.account === "entrenador") {
+        navigate("/signup/coachform");
+      }
+      console.log(result);
+    } catch(e) {
+      alert("Wrong credentials");
+    }
+    
+    
+    
 // FETCH PARA REGISTRO
-    let result = await fetch("http://localhost:8000/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(item)
-    });
-    result = await result.json();
-    localStorage.getItem("user-info", JSON.stringify(result)) // <-- ¿Qué esta pasando aquí???
-    // navigate("/accountSelect");
+    // let result = await fetch("http://localhost:8000/auth/signup", {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify(item)
+    // });
+    // result = await result.json();
+    // localStorage.getItem("user-info", JSON.stringify(result)) // <-- ¿Qué esta pasando aquí???
+    // // navigate("/signup");
+    // console.log(result)
   };
 
   return (
     <Container>
+      <h1>Cuenta de: {accountType}</h1>
       <Row className="bg-form-box mt-4">
         <Col xm={"d-none"} md={5} lg={6} xl={6} className="bg-signup-poster">
         

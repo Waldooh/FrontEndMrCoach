@@ -42,8 +42,13 @@ const LandingPage = () => {
             Find your personal trainer who want's you to achive your goals. A coach for you
             to leade you, to motivate you, to push you until you get it! 
           </p>
-          <a href="/signup" className="joinow-btn">Join Now</a>
-          <a href="/landing" className="learnmore-btn">Learn More</a>
+          <Nav.Link   
+            className="joinow-btn" 
+            trigger={buttonPopup} setTrigger={setButtonPopup}
+            onClick={()=>setButtonPopup(true)}
+          >Join Now
+          </Nav.Link>
+          <Nav.Link  href="/landing" className="learnmore-btn">Learn More</Nav.Link>
         </div>
       </div>
 {/* ---------------------- Second section ------------------------- */}
