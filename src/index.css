@@ -29,3 +29,7 @@ body {
 .container-dashboard.isactive {
     margin-left: 72px;
 }
+
+.container-dashboard.notactive {
+    margin: 0;
+}

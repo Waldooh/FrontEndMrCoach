@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import '../../../styles/SliderForm.scss';
 
 
 const StudentForm = () => {
 
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
   const [myheight, setMyheight] = useState(0);
   const [myweight, setMyweight] = useState(0);
@@ -30,7 +32,7 @@ const StudentForm = () => {
     const altura = e.target.id;
     if(altura === "+" && myheight <= 200) {
       setMyheight(myheight + 1);
-    } else if(altura === "-" && myweight > 0) {
+    } else if(altura === "-" && myheight > 0) {
       setMyheight(myheight - 1);
     }
   }
@@ -43,40 +45,41 @@ const StudentForm = () => {
     }
   }
 
-  // const handleOnChange = () => {
-    
-  // }
-
-  const handleForm = () => {
-    let student = localStorage.getItem("user-info");
-    let studentParsed = JSON.parse(student);
-    let studentId = studentParsed.userId;
-    let authToken = studentParsed.token
-    return {studentId, authToken}
+  const handleOnChange = (e) => {
+    const { id, value } = e.target;
+    setLabel({ ...label, [id]: value });
   }
+
+  const handleOnSubmit = async () => {
+    let student = JSON.parse(localStorage.getItem("user-info"));
+    let authToken = JSON.parse(localStorage.getItem("jwt"));
+    let studentId = student._id;
+
+    if (activeTab === 6) {
+      try {
+        let result = await fetch(`http://localhost:8000/user/${studentId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "authorization": authToken,
+          },
+          body: JSON.stringify(label)
+        });
+        result = await result.json();
+        console.log("result:", result);
+        navigate("/routines");
+        window.location.reload();
+      } catch (error) {
+        alert("Error: ", error)
+      };
+    };
+  };
   
-  // try {
-  //   let result = await fetch(`http://localhost:8000/user/:${handleForm.studentId}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "authorization": handleForm.authToken,
-  //     },
-  //     body: studentData,
-  //   });
-  //   result = await result.json();
-  //   console.log("result:", result);
-  // } catch (error) {
-  //   alert("Error: ", error)
-  // }
-  const switchPage = async (event) => {
+  
+  const switchPage = (event) => {
     const btnSwitch = event.target.id;
-    
-    console.log("target:",event.target)
-    console.log("value:",event.target.value)
-    if (btnSwitch === "continue" && activeTab < 6) {
+    if (btnSwitch === "continue" && activeTab <= 6) {
       setActiveTab(activeTab + 1);
-      console.log(label)
     }
     if (btnSwitch === "back" && activeTab > 1) {
       setActiveTab(activeTab - 1);
@@ -87,9 +90,9 @@ const StudentForm = () => {
     <div className="body">
       <div className="main">
         <h1>Student  Form</h1>
-        <div className="pages">     
+        <div className="pages">
 {/* ---------------- Preguntas del formulario (PAG. 0)------------------- */}
-          <div className={`page ${activeTab === 0 ? "is-active" : ""} p-5`} data-page="1">
+          <div className={`page ${activeTab === 0 ? "is-active" : ""} p-5`} data-page="0">
             <h2>Hola,</h2>
             <p>Gracias por registrarte en Mr. Coach, a continuaciónte haremos algunas preguntas para asegurarnos de que cumplas tus metas.</p>
           </div>
@@ -101,8 +104,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio" 
+                  id="healthGoal"
                   value="lose weight"
-                  onClick={(e)=>setLabel(e.target.value)} 
+                  onClick={handleOnChange} 
                   checked 
                 />
                 <span className="radio-btn">
@@ -115,8 +119,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio" 
+                  id="healthGoal"
                   value="build muscle"
-                  onClick={(e)=>setLabel(e.target.value)}
+                  onClick={handleOnChange}
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -128,8 +133,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio" 
+                  id="healthGoal"
                   value="develop mobility"
-                  onClick={(e)=>setLabel(e.target.value)}
+                  onClick={handleOnChange}
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -141,8 +147,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio" 
+                  id="healthGoal"
                   value="increase strength"
-                  onClick={(e)=>setLabel(e.target.value)}
+                  onClick={handleOnChange}
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -158,9 +165,10 @@ const StudentForm = () => {
               <label className="custom-radio"> 
                 <input 
                   type="radio" 
-                  name="radio" 
+                  name="radio"
+                  id="workoutFrecuency" 
                   value="none"
-                  onClick={(e)=>setLabel(e.target.value)} 
+                  onClick={handleOnChange}  
                   checked 
                 />
                 <span className="radio-btn">
@@ -173,8 +181,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio" 
+                  id="workoutFrecuency"
                   value="fiew a month"
-                  onClick={(e)=>setLabel(e.target.value)} 
+                  onClick={handleOnChange} 
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -185,8 +194,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio"
+                  id="workoutFrecuency"
                   value="fiew a week"
-                  onClick={(e)=>setLabel(e.target.value)} 
+                  onClick={handleOnChange} 
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -197,8 +207,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio" 
+                  id="workoutFrecuency"
                   value="dayli"
-                  onClick={(e)=>setLabel(e.target.value)}   
+                  onClick={handleOnChange}    
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -215,8 +226,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio"
+                  id="metricStystem"
                   value="anglosajon"
-                  onClick={(e)=>setLabel(e.target.value)}  
+                  onClick={handleOnChange}  
                   checked 
                 />
                 <span className="radio-btn">
@@ -228,8 +240,9 @@ const StudentForm = () => {
                 <input 
                   type="radio" 
                   name="radio"
+                  id="metricStystem"
                   value="decimal"
-                  onClick={(e)=>setLabel(e.target.value)}  
+                  onClick={handleOnChange}  
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
@@ -245,31 +258,32 @@ const StudentForm = () => {
 
               <label className="custom-radio">
                 <input 
-                  type="number" 
+                  type="number"
                   name="radio"
-                  onClick={(e)=>setLabel(e.target.value)}  
-                  checked 
+                  id="height"
+                  onChange={handleOnChange}
                 />
                 <span className="radio-btn justify-content-between">
                   <h3>Height: {myheight}</h3>
                   <div className="d-inline">
-                    <button className="d-block" id="+" onClick={altura}>+</button>
-                    <button className="d-block" id="-" onClick={altura}>-</button>
+                    <button className="d-block material-icons-outlined" id="+" onClick={altura}>arrow_drop_up</button>
+                    <button className="d-block material-icons-outlined" id="-" onClick={altura}>arrow_drop_down</button>
                   </div>
                 </span>
               </label>
 
               <label className="custom-radio">
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   name="radio"
-                  onClick={(e)=>setLabel(e.target.value)}  
+                  id="weight"
+                  onChange={handleOnChange}
                 />
                 <span className="radio-btn justify-content-between">
                   <h3>Weight: {myweight}</h3>
                   <div className="d-inline">
-                    <button className="d-block" id="+" onClick={peso}>+</button>
-                    <button className="d-block" id="-" onClick={peso}>-</button>
+                    <button className="d-block material-icons-outlined" id="+" onClick={peso}>arrow_drop_up</button>
+                    <button className="d-block material-icons-outlined" id="-" onClick={peso}>arrow_drop_down</button>
                   </div>
                 </span>
               </label>
@@ -278,12 +292,14 @@ const StudentForm = () => {
                 <input 
                   type="number" 
                   name="radio" 
+                  id="age"
+                  onChange={handleOnChange}
                 />
                 <span className="radio-btn justify-content-between">
                   <h3>Age: {myage}</h3>
                   <div className="d-inline">
-                    <button className="d-block" id="+" onClick={edad}>+</button>
-                    <button className="d-block" id="-" onClick={edad}>-</button>
+                    <button className="d-block material-icons-outlined" id="+" onClick={edad}>arrow_drop_up</button>
+                    <button className="d-block material-icons-outlined" id="-" onClick={edad}>arrow_drop_down</button>
                   </div>
                 </span>
               </label>
@@ -298,12 +314,13 @@ const StudentForm = () => {
                   type="radio" 
                   name="radio" 
                   value="male"
-                  onClick={(e)=>setLabel(e.target.value)}  
+                  id="gender"
+                  onClick={handleOnChange}  
                   checked 
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
-                  <h3>Maculino</h3>
+                  <h3>Male</h3>
                 </span>
               </label>
               <label className="custom-radio">
@@ -311,11 +328,12 @@ const StudentForm = () => {
                   type="radio" 
                   name="radio" 
                   value="female"
-                  onClick={(e)=>setLabel(e.target.value)}  
+                  id="gender"
+                  onClick={handleOnChange} 
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
-                  <h3>Femenino</h3>
+                  <h3>Female</h3>
                 </span>
               </label>
               <label className="custom-radio">
@@ -323,11 +341,12 @@ const StudentForm = () => {
                   type="radio" 
                   name="radio"
                   value="other"
-                  onClick={(e)=>setLabel(e.target.value)}  
+                  id="gender"
+                  onClick={handleOnChange}  
                 />
                 <span className="radio-btn">
                   <span className="material-icons-outlined">check</span>
-                  <h3>Otro</h3>
+                  <h3>Other</h3>
                 </span>
               </label>
             </div>
@@ -343,16 +362,14 @@ const StudentForm = () => {
             <button 
               className="pl-2.2" 
               id="continue" 
-              onClick={switchPage}
-              // onSubmit={}
+              onClick={(activeTab === 6) ? handleOnSubmit : switchPage}
               value={label}
-            >
-              Continue 
+            >Continue 
               <span class="material-icons-outlined">chevron_right</span>
             </button>
 
             <div className="nav">
-              <ul className="tabs">
+              <ul className={(activeTab === 0) ? "d-none" : "tabs"}>
                 <li className={`tab ${activeTab === 1 ? "is-active": ""}`}>
                   <a data-tab="1"></a>
                 </li>
@@ -373,14 +390,12 @@ const StudentForm = () => {
                 </li>
               </ul>
             </div>
-
-            <button 
-              id="back" 
-              onClick={switchPage}
-            >
-              <span class="material-icons-outlined">chevron_left</span>
-              Back
-            </button>
+            {(activeTab === 0)
+            ? "" 
+            : <button id="back" onClick={switchPage}>
+                <span class="material-icons-outlined">chevron_left</span>
+                Back
+              </button>}
           </div>
         </div>
       </div>

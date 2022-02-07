@@ -31,9 +31,14 @@ const Login = () => {
       result = await result.json()
 
       if(result.ok) {
-        localStorage.setItem("user-info", JSON.stringify(result.payload))
-        console.log("result:", result.payload)
-        navigate("/landing");
+        localStorage.setItem("jwt", JSON.stringify(result.payload.token))
+        console.log("result:", result)
+        if(result.payload.account === "entrenador") {
+          navigate("/pupils");
+        } else if(result.payload.account === "alumno") {
+          navigate("/routines");
+        }
+        window.location.reload();
       } else {
         console.log("result", result)
         alert(result.error);

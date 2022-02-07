@@ -31,7 +31,7 @@ const SignupPage = (props) => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-
+    
     setNewUser({ ...newUser, [name]: value });
 
     if(name === "password") {
@@ -76,14 +76,19 @@ const SignupPage = (props) => {
         body: JSON.stringify(item)
       });
       result = await result.json();
-      if(result.payload.userCreated.account === "alumno") {
+      console.log(result);
+      if(result.payload.userCreated.account === "alumno" && result.ok) {
+        localStorage.setItem("user-info", JSON.stringify(result.payload.userCreated));
+        localStorage.setItem("jwt", JSON.stringify(result.payload.token));
         navigate("/signup/studentform");
-      } else if (result.payload.userCreated.account === "entrenador") {
+      } else if (result.payload.userCreated.account === "entrenador" && result.ok) {
+        localStorage.setItem("user-info", JSON.stringify(result.payload.userCreated));
+        localStorage.setItem("jwt", JSON.stringify(result.payload.token));
         navigate("/signup/coachform");
       }
-      console.log(result);
     } catch(e) {
-      alert("Wrong credentials");
+      alert("Wrong credentials", e);
+      console.log(e)
     }
     
     
