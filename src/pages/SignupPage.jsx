@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 import { React, useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import '../styles/Signup.css';
 import MrLogo from '../components/img/mrCoach-simbol.png';
 
@@ -22,7 +22,7 @@ const passVerification = {
 
 const SignupPage = (props) => {
 
-  const navigate = useNavigate();
+  const history = useHistory();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
   let { accountType } = useParams();
@@ -80,11 +80,11 @@ const SignupPage = (props) => {
       if(result.payload.userCreated.account === "alumno" && result.ok) {
         localStorage.setItem("user-info", JSON.stringify(result.payload.userCreated));
         localStorage.setItem("jwt", JSON.stringify(result.payload.token));
-        navigate("/signup/studentform");
+        history.push("/signup/studentform");
       } else if (result.payload.userCreated.account === "entrenador" && result.ok) {
         localStorage.setItem("user-info", JSON.stringify(result.payload.userCreated));
         localStorage.setItem("jwt", JSON.stringify(result.payload.token));
-        navigate("/signup/coachform");
+        history.push("/signup/coachform");
       }
     } catch(e) {
       alert("Wrong credentials", e);

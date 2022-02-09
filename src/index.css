@@ -5,8 +5,8 @@
 
 body {
     /* background: #111b27; */
-    background: #FFAB00;
-    background: linear-gradient(to right, #FFAB00, #FF7A00);
+    background: #055abba4;
+    /* background: linear-gradient(to right, #FFAB00, #FF7A00); */
     font-family: 'Poppins', sans-serif;
     /* font-family: 'Reem Kufi', sans-serif; */
 }
@@ -28,8 +28,4 @@ body {
 
 .container-dashboard.isactive {
     margin-left: 72px;
-}
-
-.container-dashboard.notactive {
-    margin: 0;
 }

@@ -3,18 +3,21 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Formik, Form, ErrorMessage } from 'formik';
 import '../styles/Login.scss';
 import MrLogo from '../components/img/MrCoach-Logo.png';
-import { useNavigate } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
+import useAuth from '../components/Auth/useAuth';
+
+// Obtener credenciales de autenticación desde el formulario
+const userCredentials = {
+
+}
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  // useEffect(() => {
-  //   if(localStorage.getItem("user-info")) {
-  //     navigate("/accountSelect");
-  //   }
-  // }, []);
+  const location = useLocation();
+  const history = useHistory();
+  const { logIn } = useAuth();
 
   const handleLogin = async () => {
     console.warn("Enviado", email, password);
@@ -28,17 +31,18 @@ const Login = () => {
         },
         body: JSON.stringify(item)
       });
-      result = await result.json()
+      result = await result.json();
 
       if(result.ok) {
         localStorage.setItem("jwt", JSON.stringify(result.payload.token))
         console.log("result:", result)
         if(result.payload.account === "entrenador") {
-          navigate("/pupils");
+          history.push("/pupils");
         } else if(result.payload.account === "alumno") {
-          navigate("/routines");
+          history.psuh("/routines");
         }
-        window.location.reload();
+        // window.location.reload();
+        logIn(userCredentials, location.state?.from);
       } else {
         console.log("result", result)
         alert(result.error);

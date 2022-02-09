@@ -1,0 +1,15 @@
+.login-box {
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 25px -5px black;
+          box-shadow: 0px 0px 25px -5px black;
+  min-height: 86vh;
+}
+
+.bg-login-pic {
+  background-image: url("../components/img/LoginUserModel.png");
+  background-color: aqua;
+  height: 90vh;
+  background-position: center center;
+  background-size: cover;
+}
+/*# sourceMappingURL=Login.css.map */

@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/SideMenu.scss';
+import useAuth from './Auth/useAuth';
 import logo from './img/mrCoach-simbol.png';
 import yo from './img/Yo.jpg';
+import routes from '../Routers/Helpers';
 
 
 
-function SideMenu(props) {
+const SideMenu = (props) => {
 
+  const { logOut } = useAuth();
   const [isactive, setIsactive] = useState(false);
+  const [collapse, setCollapse] = useState(false)
 
   useEffect(() => {
     props.onCollapse(isactive)
@@ -35,51 +39,65 @@ function SideMenu(props) {
       <Col className="navigation">
         <Row className="main-menu">
 
-          <NavLink to="/routines" className="menu-item" activeClassName="selected" exact={true}>
+          <Link to={routes.routines} className="menu-item" activeClassName="selected" exact={true}>
             <div className="menu-icon">
               <span className="material-icons-outlined">pending_actions</span>
             </div>
             <span>Routines</span>
-          </NavLink>
+          </Link>
 
-          <NavLink to="/exercises" className="menu-item" activeClassName="selected">
+          <Link to={routes.exercises} className="menu-item" activeClassName="selected">
             <div className="menu-icon">
               <span className="material-icons-outlined">fitness_center</span>
             </div>
             <span>Exercises</span>
-          </NavLink>
+          </Link>
           
-          <NavLink to="/pupils" className="menu-item" activeClassName="selected">
+          <Link to={routes.pupils} className="menu-item" activeClassName="selected">
             <div className="menu-icon">
               <span className="material-icons-outlined">group</span>
             </div>
             <span>Pupils</span>
-          </NavLink>
+          </Link>
 
-          <NavLink to="/blog" className="menu-item" activeClassName="selected">
+          <Link to={routes.blog} className="menu-item" activeClassName="selected">
             <div className="menu-icon">
               <span className="material-icons-outlined">article</span>  
             </div>
             <span>Blog</span>
-          </NavLink>
+          </Link>
 
-          <NavLink to="/chat" className="menu-item" activeClassName="selected">
+          <Link to={routes.chat} className="menu-item" activeClassName="selected">
             <div className="menu-icon">
               <span className="material-icons-outlined">forum</span>
             </div>
             <span>Chat</span>
-          </NavLink>
+          </Link>
           
         </Row>
       </Col>
       <div className="footer-menu">
-        <div className="avatar">
-          <img src={yo} alt="user badge" />
+
+        <div className="dropup">
+          <button className="avatar" onClick={()=>setCollapse(!collapse)}>
+            <img src={yo} alt="user badge" />
+          </button>
+          {collapse
+            ? <ul className="drop-menu">
+                <Link to={routes.profile} className="dropdown-item my-1">Profile</Link>
+                <Link to="#" className="dropdown-item my-1">Settings</Link>
+                <hr className="dropdown-divider m-0" />
+                <Link to="#" className="dropdown-item my-1" onClick={logOut}>Sign out</Link>
+              </ul>
+            : ""
+          }
         </div>
+        
         <div className="user-info">
           <h5>Armando Ríos</h5>
           <p>armandorg95@hotmail.com</p>
         </div>
+        
       </div>  
     </div>
   );

@@ -1,53 +1,27 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import '../../../styles/SliderForm.scss';
+import { useHistory } from 'react-router-dom';
+import '../../styles/SliderForm.scss';
 
 
 const StudentForm = () => {
 
-  const navigate = useNavigate();
+  const history = useHistory();
   const [activeTab, setActiveTab] = useState(0);
-  const [myheight, setMyheight] = useState(0);
-  const [myweight, setMyweight] = useState(0);
-  const [myage, setMyage] = useState(0);
-  const [label, setLabel] = useState({
+  const [studentInfo, setStudentInfo] = useState({
     healthGoal: "",
     workoutFrecuency: "",
     metricStystem: "",
-    height: myheight,
-    weight: myweight,
-    age: myage,
+    height: 0,
+    weight: 0,
+    age: 0,
     gender: "",
   });
 
-  const peso = (e) => {
-    const peso = e.target.id;
-    if(peso === "+" && myweight <= 300) {
-      setMyweight(myweight + 1);
-    } else if(peso === "-" && myweight > 0) {
-      setMyweight(myweight - 1);
-    }
-  }
-  const altura = (e) => {
-    const altura = e.target.id;
-    if(altura === "+" && myheight <= 200) {
-      setMyheight(myheight + 1);
-    } else if(altura === "-" && myheight > 0) {
-      setMyheight(myheight - 1);
-    }
-  }
-  const edad = (e) => {
-    const edad = e.target.id;
-    if(edad === "+" && myage < 99) {
-      setMyage(myage + 1);
-    } else if(edad === "-" && myage > 0) {
-      setMyage(myage - 1);
-    }
-  }
 
   const handleOnChange = (e) => {
     const { id, value } = e.target;
-    setLabel({ ...label, [id]: value });
+    setStudentInfo({ ...studentInfo, [id]: value });
+    console.log(studentInfo)
   }
 
   const handleOnSubmit = async () => {
@@ -63,11 +37,11 @@ const StudentForm = () => {
             "Content-Type": "application/json",
             "authorization": authToken,
           },
-          body: JSON.stringify(label)
+          body: JSON.stringify(studentInfo)
         });
         result = await result.json();
         console.log("result:", result);
-        navigate("/routines");
+        history.push("/routines");
         window.location.reload();
       } catch (error) {
         alert("Error: ", error)
@@ -255,54 +229,38 @@ const StudentForm = () => {
           <div className={`page ${activeTab === 4 ? "is-active" : ""}`} data-page="4">
             <h2>Indicate your age, weight and height</h2>
             <div className="radio-btns">
-
-              <label className="custom-radio">
+              <div className="label-container">
+              <label className="mb-0 mt-3"><h6>Height:</h6></label>
                 <input 
+                  className="form-control"
                   type="number"
                   name="radio"
                   id="height"
+                  value={studentInfo.height}
                   onChange={handleOnChange}
                 />
-                <span className="radio-btn justify-content-between">
-                  <h3>Height: {myheight}</h3>
-                  <div className="d-inline">
-                    <button className="d-block material-icons-outlined" id="+" onClick={altura}>arrow_drop_up</button>
-                    <button className="d-block material-icons-outlined" id="-" onClick={altura}>arrow_drop_down</button>
-                  </div>
-                </span>
-              </label>
 
-              <label className="custom-radio">
+              <label className="mb-0 mt-3"><h6>Weight:</h6></label>
                 <input
+                  className="form-control"
                   type="number"
                   name="radio"
                   id="weight"
+                  value={studentInfo.weight}
                   onChange={handleOnChange}
                 />
-                <span className="radio-btn justify-content-between">
-                  <h3>Weight: {myweight}</h3>
-                  <div className="d-inline">
-                    <button className="d-block material-icons-outlined" id="+" onClick={peso}>arrow_drop_up</button>
-                    <button className="d-block material-icons-outlined" id="-" onClick={peso}>arrow_drop_down</button>
-                  </div>
-                </span>
-              </label>
 
-              <label className="custom-radio">
+              <label className="mb-0 mt-3"><h6>Age:</h6></label>
                 <input 
+                  className="form-control"
                   type="number" 
                   name="radio" 
                   id="age"
+                  value={studentInfo.age}
                   onChange={handleOnChange}
                 />
-                <span className="radio-btn justify-content-between">
-                  <h3>Age: {myage}</h3>
-                  <div className="d-inline">
-                    <button className="d-block material-icons-outlined" id="+" onClick={edad}>arrow_drop_up</button>
-                    <button className="d-block material-icons-outlined" id="-" onClick={edad}>arrow_drop_down</button>
-                  </div>
-                </span>
-              </label>
+              
+              </div>
             </div>
           </div>
 {/* ---------------- (PAG. 5)------------------- */}
@@ -363,7 +321,7 @@ const StudentForm = () => {
               className="pl-2.2" 
               id="continue" 
               onClick={(activeTab === 6) ? handleOnSubmit : switchPage}
-              value={label}
+              value={studentInfo}
             >Continue 
               <span class="material-icons-outlined">chevron_right</span>
             </button>

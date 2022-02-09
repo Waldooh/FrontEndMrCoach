@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import '../styles/AccountSelector.scss';
 
 
 const AccountSelector = () => {
 
   const [typeSelect, setTypeSelect] = useState("");
-  const navigate = useNavigate();
+  const history = useHistory();
 
 
   const accountHandler = async () => {
     if(typeSelect !== "") {
-      navigate("/signup/"+ typeSelect);
+      history.push("/signup/"+ typeSelect);
     } else {
       alert("Please, select your account type");
     }

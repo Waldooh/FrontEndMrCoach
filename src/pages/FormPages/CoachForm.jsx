@@ -1,11 +1,11 @@
 import React, { useState }  from 'react';
-import { useNavigate } from 'react-router';
-import '../../../styles/SliderForm.scss';
+import { useHistory } from 'react-router-dom';
+import '../../styles/SliderForm.scss';
 
 
 const CoachForm = () => {
 
-  const navigate = useNavigate();
+  const history = useHistory();
   const [activeTab, setActiveTab] = useState(0);
   const [coachInfo, setCoachInfo] = useState({
     mobileNumber: "",
@@ -42,7 +42,7 @@ const CoachForm = () => {
         });
         result = await result.json();
         console.log("result:", result);
-        navigate("/pupuls");
+        history.push("/pupuls");
         window.location.reload();
       } catch (error) {
         alert("Error: ", error)

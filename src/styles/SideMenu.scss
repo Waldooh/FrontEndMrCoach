@@ -105,6 +105,27 @@
     left: 0;
     padding: 15px;
     box-sizing: border-box;
+    display: flex;
+}
+
+.footer-menu .dropup {
+    position: relative;
+}
+
+.footer-menu .dropup .drop-menu {
+    position: absolute;
+    bottom: 35px;
+    left: 0px;
+    background-color: #fff;
+    padding: 0;
+    width: 150px;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+
+.footer-menu .dropup .drop-menu .dropdown-item {
+    border-radius: .25rem;
 }
 
 .footer-menu .avatar {
@@ -112,8 +133,10 @@
     height: 40px;
     padding: 0;
     overflow: hidden;
+    border-style: none;
     border-radius: 100%;
-    display: inline-block;
+    // position: absolute;
+    // display: inline-block;
 }
 
 .footer-menu .avatar img {
@@ -123,15 +146,15 @@
 
 .footer-menu .user-info {
     display: inline-block;
-    margin: 5px 10px;
+    padding: 7px;
     color: #fff;
-    position: absolute;
+    // position: absolute;
     opacity: 1;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.15s ease-in;
 }
 
 .side-menu.isactive .footer-menu .user-info {
-    opacity: 1;
+    opacity: 0;
     width: 0;
     height: 0;
     overflow: hidden;
@@ -139,11 +162,11 @@
 
 .footer-menu .user-info h5 {
     margin-bottom: 0;
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 300;
 }
 .footer-menu .user-info p {
     margin-bottom: 0;
-    font-size: 11px;
-    font-weight: 100;
+    font-size: 10px;
+    font-weight: 50;
 }
