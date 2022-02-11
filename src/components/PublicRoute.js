@@ -1,11 +1,12 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import useAuth from './Auth/useAuth';
+import { Redirect, Route, useLocation } from 'react-router-dom';
+import routes from '../Routers/Helpers';
+// import useAuth from './Auth/useAuth';
 
 const PublicRoute = (props) => {
-  const { isLogged } = useAuth();
-
-  if(isLogged()) return <Redirect to="routines" />
+  const location = useLocation();
+  const jwt = localStorage.getItem("jwt");
+  if(jwt) return <Redirect to={{ pathname: routes.routines, state: { from: location } }}  />
 
   return (
     <Route {...props} />

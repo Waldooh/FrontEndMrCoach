@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import '../styles/Signup.css';
 import MrLogo from '../components/img/mrCoach-simbol.png';
+import useAuth from '../components/Auth/useAuth';
 
 const initialState = {
   firstName: "",
@@ -26,6 +27,7 @@ const SignupPage = (props) => {
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
   let { accountType } = useParams();
+  const { logIn } = useAuth();
 
   useEffect(() => {}, [newUser]);
 
@@ -77,35 +79,22 @@ const SignupPage = (props) => {
       });
       result = await result.json();
       console.log(result);
-      if(result.payload.userCreated.account === "alumno" && result.ok) {
+      if(result.ok) {
+        const token = result.payload.token;
+        localStorage.setItem("jwt", token);
         localStorage.setItem("user-info", JSON.stringify(result.payload.userCreated));
-        localStorage.setItem("jwt", JSON.stringify(result.payload.token));
-        history.push("/signup/studentform");
-      } else if (result.payload.userCreated.account === "entrenador" && result.ok) {
-        localStorage.setItem("user-info", JSON.stringify(result.payload.userCreated));
-        localStorage.setItem("jwt", JSON.stringify(result.payload.token));
-        history.push("/signup/coachform");
-      }
+
+        if(result.payload.userCreated.account === "alumno") {
+          history.push("/signup/studentform");
+        } else if (result.payload.userCreated.account === "entrenador") {
+          history.push("/signup/coachform");
+        }
+        logIn(token);
+      };
     } catch(e) {
       alert("Wrong credentials", e);
       console.log(e)
-    }
-    
-    
-    
-// FETCH PARA REGISTRO
-    // let result = await fetch("http://localhost:8000/auth/signup", {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify(item)
-    // });
-    // result = await result.json();
-    // localStorage.getItem("user-info", JSON.stringify(result)) // <-- ¿Qué esta pasando aquí???
-    // // navigate("/signup");
-    // console.log(result)
+    };
   };
 
   return (

@@ -43,8 +43,8 @@ function AppRouter() {
         <PrivateRoute path={routes.profile} component={Profile} />
 
         <PublicRoute path={routes.login} component={Login} />
-        <Route path={routes.studentForm} component={StudentForm} />
-        <Route path={routes.coachForm} component={CoachForm} />
+        <PublicRoute path={routes.studentForm} component={StudentForm} />
+        <PublicRoute path={routes.coachForm} component={CoachForm} />
         <PublicRoute path={routes.signup()} component={Signup} />
         <PublicRoute path={routes.landing} component={Landing} />
 

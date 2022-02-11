@@ -13,7 +13,11 @@ const SideMenu = (props) => {
 
   const { logOut } = useAuth();
   const [isactive, setIsactive] = useState(false);
-  const [collapse, setCollapse] = useState(false)
+  const [collapse, setCollapse] = useState(false);
+  const timeOut = () => {
+    setCollapse(!collapse);
+    setTimeout(setCollapse, 5000);
+  };
 
   useEffect(() => {
     props.onCollapse(isactive)
@@ -79,7 +83,8 @@ const SideMenu = (props) => {
       <div className="footer-menu">
 
         <div className="dropup">
-          <button className="avatar" onClick={()=>setCollapse(!collapse)}>
+          <button className="avatar" 
+            onClick={timeOut}>
             <img src={yo} alt="user badge" />
           </button>
           {collapse
@@ -88,7 +93,7 @@ const SideMenu = (props) => {
                 <Link to="#" className="dropdown-item my-1">Settings</Link>
                 <hr className="dropdown-divider m-0" />
                 <Link to="#" className="dropdown-item my-1" onClick={logOut}>Sign out</Link>
-              </ul>
+              </ul> 
             : ""
           }
         </div>

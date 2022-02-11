@@ -7,9 +7,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../components/Auth/useAuth';
 
 // Obtener credenciales de autenticación desde el formulario
-const userCredentials = {
-
-}
 
 const Login = () => {
 
@@ -34,7 +31,9 @@ const Login = () => {
       result = await result.json();
 
       if(result.ok) {
-        localStorage.setItem("jwt", JSON.stringify(result.payload.token))
+        const token = result.payload.token;
+        localStorage.setItem("jwt", token);
+
         console.log("result:", result)
         if(result.payload.account === "entrenador") {
           history.push("/pupils");
@@ -42,7 +41,7 @@ const Login = () => {
           history.psuh("/routines");
         }
         // window.location.reload();
-        logIn(userCredentials, location.state?.from);
+        logIn(location.state?.from);
       } else {
         console.log("result", result)
         alert(result.error);

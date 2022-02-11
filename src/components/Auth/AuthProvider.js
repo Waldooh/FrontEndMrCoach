@@ -5,23 +5,20 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const history = useHistory();
-  const [user, setUser] = useState(null);
-  // const [user, setUser] = useState({});
 
-  // hacer una función para validar token
-  const logIn = (userCredentials, fromLocation) => {
-    setUser(true);
+  const logIn = (fromLocation) => {
     if(fromLocation) {
       history.push(fromLocation);
     }
   };
 
-  const logOut = () => setUser(null);
+  const logOut = () => {
+    localStorage.removeItem("jwt");
+  };
 
-  const isLogged = () => !!user;
+  const isLogged = () => localStorage.getItem("jwt")
 
   let contextValue = {
-    user,
     isLogged,
     logIn,
     logOut
