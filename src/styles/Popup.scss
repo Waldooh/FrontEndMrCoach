@@ -1,4 +1,4 @@
-.popup-account {
+.popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     z-index: 999;
 }
 
-.account-inner {
+.content-inner {
     position: relative;
     padding: 20px;
     width: 100%;
@@ -22,7 +22,7 @@
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.6), -5px -5px 8px rgba(0, 0, 0, 0.6);
 }
 
-.account-inner .close-btn {
+.content-inner .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -36,6 +36,6 @@
     align-items: center;
 }
 
-.account-inner .close-btn span {
+.content-inner .close-btn span {
     font-size: 20px;
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 export const AuthContext = createContext();
@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const history = useHistory();
 
-  const logIn = (fromLocation) => {
+  const logRedirect = (fromLocation) => {
     if(fromLocation) {
       history.push(fromLocation);
     }
@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
 
   let contextValue = {
     isLogged,
-    logIn,
+    logRedirect,
     logOut
   }; 
 

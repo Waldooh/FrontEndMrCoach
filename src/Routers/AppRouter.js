@@ -5,16 +5,14 @@ import Signup from '../pages/SignupPage';
 import Landing from '../pages/LandingPage';
 import StudentForm from '../pages/FormPages/StudentForm';
 import CoachForm from '../pages/FormPages/CoachForm';
-import Routines from '../pages/Dashboard/CoachDash/RoutinesPage';
+import Routines from '../pages/Dashboard/CoachDash/RoutinesBoard';
 import Pupils from '../pages/Dashboard/CoachDash/PupilsBoard';
+import Exercises from '../pages/Dashboard/CoachDash/WorkoutBoard';
 // ---------- components ------------ //
 import PrivateRoute from '../components/PrivateRoute';
 import PublicRoute from '../components/PublicRoute';
 import routes from './Helpers';
 
-const Exercises = () => {
-  return <h1>Exercises</h1>
-}
 const Blog = () => {
   return <h1>Blog</h1>
 }
@@ -43,9 +41,9 @@ function AppRouter() {
         <PrivateRoute path={routes.profile} component={Profile} />
 
         <PublicRoute path={routes.login} component={Login} />
-        <PublicRoute path={routes.studentForm} component={StudentForm} />
-        <PublicRoute path={routes.coachForm} component={CoachForm} />
-        <PublicRoute path={routes.signup()} component={Signup} />
+        <Route path={routes.studentForm} component={StudentForm} />
+        <Route path={routes.coachForm} component={CoachForm} />
+        <Route path={routes.signup()} component={Signup} />
         <PublicRoute path={routes.landing} component={Landing} />
 
         <Route path="*" component={NotFoundPage} />

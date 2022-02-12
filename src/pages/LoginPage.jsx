@@ -6,7 +6,6 @@ import MrLogo from '../components/img/MrCoach-Logo.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../components/Auth/useAuth';
 
-// Obtener credenciales de autenticación desde el formulario
 
 const Login = () => {
 
@@ -14,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const location = useLocation();
   const history = useHistory();
-  const { logIn } = useAuth();
+  const { logRedirect } = useAuth();
 
   const handleLogin = async () => {
     console.warn("Enviado", email, password);
@@ -41,7 +40,7 @@ const Login = () => {
           history.psuh("/routines");
         }
         // window.location.reload();
-        logIn(location.state?.from);
+        logRedirect(location.state?.from);
       } else {
         console.log("result", result)
         alert(result.error);
