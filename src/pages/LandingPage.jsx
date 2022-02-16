@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, Col, Row } from 'react-bootstrap';
 import Popup from '../components/Popup';
-import AccountSelector from '../components/AccountSelector';
+import AccountSelector from '../components/ModalContent/AccountSelector';
 import '../styles/Landing.scss';
 import MrLogo from '../components/img/mrCoach-simbol.png';
 
 const LandingPage = () => {
 
-  const [buttonPopup, setButtonPopup] = useState(false);
+  const [clickRegister, setClickRegister] = useState(false);
 
   return (
     <>
       <Navbar className="navbar" variant="dark">
         <Container>
-        <Navbar.Brand className="logo-section" href="/landing">
-          <img className="mr-2" style={{width:"30px"}} src={MrLogo} alt="logo" />
-          MR. COACH
-        </Navbar.Brand>
-        <Nav>
-          <Nav.Link className="d-flex align-items-center" href="/login">
-            <span class="material-icons-outlined mr-2">login</span> Login
-          </Nav.Link>
-          <Nav.Link 
-            className="ml-5" 
-            onClick={()=>setButtonPopup(true)}
-          >Register
-          </Nav.Link>
-        </Nav>
+          <Navbar.Brand className="logo-section" href="/landing">
+            <img className="mr-2" style={{width:"30px"}} src={MrLogo} alt="logo" />
+            MR. COACH
+          </Navbar.Brand>
+          <Nav>
+            <Nav.Link className="d-flex align-items-center" href="/login">
+              <span class="material-icons-outlined mr-2">login</span> Login
+            </Nav.Link>
+            <Nav.Link 
+              className="ml-5" 
+              onClick={()=>setClickRegister(true)}
+            >Register
+            </Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
 
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+      <Popup trigger={clickRegister} setTrigger={setClickRegister}>
         <AccountSelector />
       </Popup>
 
@@ -44,8 +44,8 @@ const LandingPage = () => {
           </p>
           <Nav.Link   
             className="joinow-btn" 
-            trigger={buttonPopup} setTrigger={setButtonPopup}
-            onClick={()=>setButtonPopup(true)}
+            trigger={clickRegister} setTrigger={setClickRegister}
+            onClick={()=>setClickRegister(true)}
           >Join Now
           </Nav.Link>
           <Nav.Link  href="/landing" className="learnmore-btn">Learn More</Nav.Link>

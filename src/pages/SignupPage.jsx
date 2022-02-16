@@ -26,7 +26,7 @@ const SignupPage = (props) => {
   const history = useHistory();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerification);
-  let { accountType } = useParams();
+  const { accountType } = useParams();
   const { logIn } = useAuth();
 
   useEffect(() => {}, [newUser]);

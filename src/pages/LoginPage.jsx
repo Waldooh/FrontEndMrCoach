@@ -5,6 +5,7 @@ import '../styles/Login.scss';
 import MrLogo from '../components/img/MrCoach-Logo.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../components/Auth/useAuth';
+import routes from '../Routers/Helpers';
 
 
 const Login = () => {
@@ -16,7 +17,6 @@ const Login = () => {
   const { logRedirect } = useAuth();
 
   const handleLogin = async () => {
-    console.warn("Enviado", email, password);
     let item = { email, password };
     try {
       let result = await fetch("http://localhost:8000/auth/login", {
@@ -30,17 +30,17 @@ const Login = () => {
       result = await result.json();
 
       if(result.ok) {
-        const token = result.payload.token;
-        localStorage.setItem("jwt", token);
+        localStorage.setItem("jwt", result.payload.token);
+        localStorage.setItem("user-info", JSON.stringify(result.payload));
 
         console.log("result:", result)
         if(result.payload.account === "entrenador") {
-          history.push("/pupils");
+          history.push(routes.profile);
         } else if(result.payload.account === "alumno") {
-          history.psuh("/routines");
+          history.push(routes.profile);
         }
-        // window.location.reload();
         logRedirect(location.state?.from);
+        window.location.reload();
       } else {
         console.log("result", result)
         alert(result.error);

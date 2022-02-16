@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import '../styles/AccountSelector.scss';
+import '../../styles/AccountSelector.scss';
 
 
 const AccountSelector = () => {
@@ -14,40 +14,8 @@ const AccountSelector = () => {
       history.push("/signup/"+ typeSelect);
     } else {
       alert("Please, select your account type");
-    }
+    };
   };
-
-  // const handleAccount = async (e) => {
-
-  //   let userData = localStorage.getItem("user-info");
-  //   let userDataParse = JSON.parse(userData);
-  //   let AuthToken = userDataParse.token;
-  //   console.log(userDataParse)
-  //   // Después de seleccionar cuenta
-  //   try {
-
-  //     let result = await fetch(`http://localhost:8000/user/${userDataParse.userId}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         // "Accept": "application/json",
-  //         // "authorization": AuthToken
-  //       },
-  //       // body: JSON.stringify(userData)
-  //     });
-  //     result = await result.json();
-  //     console.log("result:",result)
-  //     if(result.payload.account === "usuario") {
-  //       localStorage.setItem("account-info", JSON.stringify(result.payload))
-  //       navigate("/signup/studentform");
-  //     } else if(result.payload.account === "entrenador") {
-  //       localStorage.setItem("account-info", JSON.stringify(result.payload))
-  //       navigate("/signup/coachform");
-  //     }
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
 
   return (
     <div className="main-container">

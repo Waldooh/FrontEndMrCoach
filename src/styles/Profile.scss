@@ -1,0 +1,26 @@
+.portada {
+    // background-color: #7209B7;
+    background-image: url("https://airwallpaper.com/wp-content/uploads/wall003/Purple-Wallpaper-scaled.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 200px;
+    z-index: -1;
+}
+
+.profile-page h1 {
+    color: #7109b700;
+}
+
+.display-container {
+    background-color: #ddd;
+    border-radius: 4px;
+}
+
+.profile-card {
+    background-color: #fff;
+    color: black;
+    text-align: center;
+}

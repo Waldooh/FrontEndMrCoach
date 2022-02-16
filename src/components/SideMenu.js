@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../styles/SideMenu.scss';
 import useAuth from './Auth/useAuth';
 import logo from './img/mrCoach-simbol.png';
 import yo from './img/Yo.jpg';
 import routes from '../Routers/Helpers';
+import NavigateCoach from './ModalContent/NavigateCoach';
+import NavigateStudent from './ModalContent/NavigateStudent';
 
 
 
 const SideMenu = (props) => {
 
-  const { logOut } = useAuth();
+  const { logOut, account } = useAuth();
   const [isactive, setIsactive] = useState(false);
+  
   const [collapse, setCollapse] = useState(false);
   const timeOut = () => {
     setCollapse(!collapse);
@@ -40,48 +42,13 @@ const SideMenu = (props) => {
         </div>
       </div>
       <hr />
-      <Col className="navigation">
-        <Row className="main-menu">
 
-          <Link to={routes.routines} className="menu-item" activeclassname="selected" exact={true}>
-            <div className="menu-icon">
-              <span className="material-icons-outlined">pending_actions</span>
-            </div>
-            <span>Routines</span>
-          </Link>
-
-          <Link to={routes.exercises} className="menu-item" activeclassname="selected">
-            <div className="menu-icon">
-              <span className="material-icons-outlined">fitness_center</span>
-            </div>
-            <span>Exercises</span>
-          </Link>
-          
-          <Link to={routes.pupils} className="menu-item" activeclassname="selected">
-            <div className="menu-icon">
-              <span className="material-icons-outlined">group</span>
-            </div>
-            <span>Pupils</span>
-          </Link>
-
-          <Link to={routes.blog} className="menu-item" activeclassname="selected">
-            <div className="menu-icon">
-              <span className="material-icons-outlined">article</span>  
-            </div>
-            <span>Blog</span>
-          </Link>
-
-          <Link to={routes.chat} className="menu-item" activeclassname="selected">
-            <div className="menu-icon">
-              <span className="material-icons-outlined">forum</span>
-            </div>
-            <span>Chat</span>
-          </Link>
-          
-        </Row>
-      </Col>
+      {(account.account==="entrenador")
+        ? <NavigateCoach />
+        : <NavigateStudent />
+      }
+      
       <div className="footer-menu">
-
         <div className="dropup">
           <button className="avatar" 
             onClick={timeOut}>
@@ -101,8 +68,7 @@ const SideMenu = (props) => {
         <div className="user-info">
           <h5>Armando Ríos</h5>
           <p>armandorg95@hotmail.com</p>
-        </div>
-        
+        </div>       
       </div>  
     </div>
   );

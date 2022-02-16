@@ -8,8 +8,8 @@ const Exercises = () => {
 
   const [data, setData] = useState([]);
   
-  const getWorkout = () => {
-    fetch("http://localhost:8000/workout/", {
+  const getWorkout = async () => {
+    await fetch("http://localhost:8000/workout/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -25,8 +25,8 @@ const Exercises = () => {
     getWorkout()
   }, []);
 
-  const postWorkout = () => {
-    fetch("http://localhost:8000/workout/", {
+  const postWorkout = async () => {
+    await fetch("http://localhost:8000/workout/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,8 +45,8 @@ const Exercises = () => {
     });
   };
 
-  const patchWorkout = () => {
-    fetch(`http://localhost:8000/workout/${ejercicio._id}`, {
+  const patchWorkout = async () => {
+    await fetch(`http://localhost:8000/workout/${ejercicio._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const Exercises = () => {
   };
 
   const deleteWorkout = async () => {
-    fetch(`http://localhost:8000/workout/${ejercicio._id}`, {
+    await fetch(`http://localhost:8000/workout/${ejercicio._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

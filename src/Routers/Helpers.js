@@ -1,4 +1,7 @@
 const routes = {
+    report: "/report",
+    calendar: "/calendar",
+    gallery: "/gallery",
     routines: "/routines",
     exercises: "/exercises",
     pupils: "/pupils",
@@ -6,10 +9,11 @@ const routes = {
     chat: "/chat",
     profile: "/profile",
     login: "/login",
+    explore: "/explore",
     coachForm: "/signup/coachform",
     studentForm: "/signup/studentform",
     signup: (accountType) => accountType ? `/signup/:${accountType}` : "/signup/:accountType",
-    landing: "/landing",
+    landing: "/",
 }
 
 export default routes;
