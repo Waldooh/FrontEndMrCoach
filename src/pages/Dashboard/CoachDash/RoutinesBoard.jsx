@@ -1,10 +1,142 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap';
+import Popup from '../../../components/Popup';
+// import { DateRangePicker } from 'react-date-range';
 
 const Routines = () => {
 
+  const [openModal, setOpenModal] = useState(false);
+  const [ejercicio, setEjercicio] = useState({
+    _id: "",
+    title: "",
+    img: "",
+    class: "",
+    rest: "",
+    days: "",
+    weeks: "",
+    notes: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEjercicio({ ...ejercicio, [name]: value });
+  };
+
   return (
     <div>
+      <Popup trigger={openModal} setTrigger={setOpenModal}>
+        <h1>Modal Routines</h1>
+        <Container>
+          <Row className="label-group">
+            <Col>
+              <label className="mb-0">Routine name:
+                <input 
+                  className="label-control" 
+                  type="text" 
+                  name="title" 
+                  value={ejercicio ? ejercicio.title : ""} 
+                  onChange={handleChange}
+                /><br />
+              </label>
+            </Col>
+            <Col>
+              <label className="mb-0">Class:
+                <input 
+                  className="label-control" 
+                  type="text" 
+                  name="muscle" 
+                  value={ejercicio ? ejercicio.class : ""}
+                  onChange={handleChange}
+                /><br />
+              </label>
+            </Col>
+          </Row>
+
+          <Row className="label-group">
+            <Col>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Mon</label>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Tue</label>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Wed</label>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Thu</label>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Fri</label>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Sat</label>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Sun</label>
+            </Col>
+          </Row>
+
+          <Row className="label-group">
+            <Col>
+              <label className="mb-0">Rest:
+                <input 
+                  className="label-control" 
+                  type="text" 
+                  name="reps"
+                  value={ejercicio ? ejercicio.rest : ""}
+                  onChange={handleChange}
+                /><br />
+              </label>
+            </Col>
+            <Col>
+              <label className="mb-0">Image:
+                <input 
+                  className="label-control" 
+                  type="text" 
+                  name="img" 
+                  value={ejercicio ? ejercicio.img : ""}
+                  onChange={handleChange}
+                /><br />
+              </label>
+            </Col>
+          </Row>
+          
+          <Row className="label-group">
+            <Col>
+              <label className="mb-0">Days training: {/* implementar selector de días */}
+                <input 
+                  className="label-control" 
+                  type="text" 
+                  name="equipment" 
+                  value={ejercicio ? ejercicio.days : ""}
+                  onChange={handleChange}
+                /><br />
+              </label>
+            </Col>
+            <Col>
+              <label className="mb-0">Weeks: {/* implementar selector semalan */}
+                <input 
+                  className="label-control" 
+                  type="text" 
+                  name="link" 
+                  value={ejercicio ? ejercicio.weeks : ""}
+                  onChange={handleChange}
+                /><br />
+              </label>
+            </Col>
+          </Row>
+          <Row>
+            <label>Notes:
+              <textarea 
+                className="label-control" 
+                name="notes" 
+                value={ejercicio ? ejercicio.notes : ""}
+                onChange={handleChange}
+              />
+            </label>
+          </Row>
+        </Container>
+        <button className="btn btn-primary">Save</button>
+        <button className="btn btn-danger" onClick={()=>setOpenModal(false)}>Cancel</button>
+      </Popup>
+
       <h1>Routines</h1>
+      <button className="btn btn-success mr-5" onClick={()=>setOpenModal(true)}>Add +</button>
       <table className="table table-striped ml-2">
         <thead>
           <tr>

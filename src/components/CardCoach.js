@@ -6,9 +6,9 @@ import pic from './img/blank-user-profile.png';
 
 const CardCoach = (props) => {
   
-  const hireCoach = async () => {
+  const hireCoach = async (coachId) => {
     try {
-      console.log(props.coaches.index)
+      console.log(coachId)
       let { userId } = JSON.parse(localStorage.getItem("user-info"));
       console.log(userId)
 
@@ -17,7 +17,7 @@ const CardCoach = (props) => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({coach: props.coaches._id})
+        body: JSON.stringify({coach: coachId})
       }).then(res => res.json());
       // setContract(info.payload);
       console.log("contract", info)
@@ -25,14 +25,14 @@ const CardCoach = (props) => {
       alert(err)
     }
   };
-  console.log("props", props.coaches)
+  console.log("props", props)
 
   return (
     <>
-      {props.coaches.map((coach, index) => {
-      return(
+      {props.coaches.map((coach) => {
+      return (
         <Card 
-          key={index} 
+          // key={index} 
           className="d-flex flex-column"
           style={{
             width: "16rem",
@@ -60,15 +60,16 @@ const CardCoach = (props) => {
             </div>
             <div className="mt-auto mr-auto">
               <button 
-                className="btn btn-primary" 
-                onClick={()=>hireCoach()}
+                className="btn btn-primary"
+                onClick={()=>hireCoach(coach._id)}
               >Hire
               </button>
-              <button className="btn btn-info">See More</button>
+              <button className="btn btn-info" onClick={()=>props.setOpenModal(true)}>See More</button>
             </div>
           </div>
         </Card>
-      )})}
+        )
+      })}
     </>
   );
 };

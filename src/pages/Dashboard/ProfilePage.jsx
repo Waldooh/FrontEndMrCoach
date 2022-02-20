@@ -89,7 +89,7 @@ const Profile = () => {
             </Card>
 
         {/* ---------------Delete Account--------------- */}
-            <Card className="mt-3 mb-3">
+            {/* <Card className="mt-3 mb-3">
               <Card.Title>
                 <h3 className="m-3">Delete Account</h3>
                 <hr className="mx-3" />
@@ -99,7 +99,7 @@ const Profile = () => {
                 <p>Please be sure you want to delete your account forever 😢  </p>
                 <button className="mt-3">Delete</button>
               </Card.Body>
-            </Card>
+            </Card> */}
           </Col>
           
           {/* ---------------- Profile Card -------------------- */}
