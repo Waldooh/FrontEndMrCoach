@@ -7,8 +7,10 @@ const AuthProvider = ({ children }) => {
   const history = useHistory();
   const [user, setUser] = useState({});
   const [coaches, setCoaches] = useState([]);
+  const [exercises, setExercises] = useState([]);
+  const [pupils, setPupils] = useState([]);
 
-// Peticiones fetch
+//---------------- Peticiones fetch -----------------//
   const coachesData = async () => {
     const info = await fetch("http://localhost:8000/user", {
       method: "GET",
@@ -23,6 +25,18 @@ const AuthProvider = ({ children }) => {
     setCoaches(filterInfo);
   };
   
+  const pupilsData = async () => {
+    const info = await fetch(`http://localhost:8000/contract/${account.userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": localStorage.getItem("jwt")
+      }
+    }).then(res => res.json());
+    let pupilInfo = info.payload.oneContract.map(item => {return item.student})
+    setPupils(pupilInfo);
+  };
+  
   const userData = async () => {
     const info = await fetch(`http://localhost:8000/user/${account.userId}`, {
       method: "GET",
@@ -32,6 +46,20 @@ const AuthProvider = ({ children }) => {
       }
     }).then(res => res.json());
     setUser(info.payload);
+  };
+
+  const exercisesList = async () => {
+    await fetch("http://localhost:8000/workout/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": localStorage.getItem("jwt")
+      },
+    })
+    .then((result) => result.json())
+    .then((json) => {
+      setExercises(json.payload.allExercises)
+    })
   };
 //------------------------------------//
 
@@ -44,8 +72,12 @@ const AuthProvider = ({ children }) => {
   const isLogged = () => localStorage.getItem("jwt");
 
   let contextValue = {
+    exercises,
+    exercisesList,
     coaches,
     coachesData,
+    pupils,
+    pupilsData,
     user,
     userData,
     account,

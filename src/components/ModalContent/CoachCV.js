@@ -6,7 +6,6 @@ import video from '../img/play-video.png';
 const CoachCV = () => {
   return (
     <div>
-      Coach CV
       <div className="d-flex">
         <img 
           src={pic}
@@ -21,7 +20,7 @@ const CoachCV = () => {
         />
         <div className="ml-3">
           <h3>Coach name</h3>
-          <p>Entrenador de: gimnasia</p>
+          <p>Entrenador de: Crossfit</p>
           <p>Previously $$$ per month</p>
         </div>
       </div>
@@ -34,7 +33,7 @@ of the printing and typesetting industry.</p>
         </Col>
       </Row>
 
-      <Row>
+      {/* <Row>
         <Col>
           <h5>Experience:</h5>
           <ul>
@@ -57,12 +56,12 @@ of the printing and typesetting industry.</p>
           </ul>
         </Col>
         <hr />
-      </Row>
+      </Row> */}
 
       <Row>
         <Col>
           <h5><b>TRANING PLAN</b></h5>
-          <h5>Introduction:</h5>
+          {/* <h5>Introduction:</h5> */}
           <p>Lorem Ipsum is simply dummy text
 of the printing and typesetting.</p>
           <img 
@@ -79,27 +78,27 @@ of the printing and typesetting.</p>
         </Col>
         <Col>
           <div>
-            <h5>week 1 - Starting low</h5>
+            <h6>week 1 - Starting low</h6>
             <ul>
-              <li>Ipsum is simply</li>
-              <li>dummy text</li>
-              <li>printing and typesetting</li>
+              <li><samll>Ipsum is simply</samll></li>
+              <li><small>dummy text</small></li>
+              <li><small>printing and typesetting</small></li>
             </ul>
           </div>
           <div>
-            <h5>week 2 - Getting medium</h5>
+            <h6>week 2 - Getting medium</h6>
             <ul>
-              <li>Ipsum is simply</li>
-              <li>dummy text</li>
-              <li>printing and typesetting</li>
+              <li><small>Ipsum is simply</small></li>
+              <li><small>dummy text</small></li>
+              <li><small>printing and typesetting</small></li>
             </ul>
           </div>
           <div>
-            <h5>week 3 - Finish hard</h5>
+            <h6>week 3 - Finish hard</h6>
             <ul>
-              <li>Ipsum is simply</li>
-              <li>dummy text</li>
-              <li>printing and typesetting</li>
+              <li><small>Ipsum is simply</small></li>
+              <li><small>dummy text</small></li>
+              <li><small>printing and typesetting</small></li>
             </ul>
           </div>
         </Col>

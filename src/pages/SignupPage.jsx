@@ -99,7 +99,6 @@ const SignupPage = (props) => {
 
   return (
     <Container>
-      <h1>Cuenta de: {accountType}</h1>
       <Row className="bg-form-box mt-4">
         <Col xm={"d-none"} md={5} lg={6} xl={6} className="bg-signup-poster">
         

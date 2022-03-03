@@ -42,7 +42,7 @@ const CoachForm = () => {
         });
         result = await result.json();
         console.log("result:", result);
-        history.push("/pupuls");
+        history.push("/pupils");
         window.location.reload();
       } catch (error) {
         alert("Error: ", error)

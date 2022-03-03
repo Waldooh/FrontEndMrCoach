@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Formik, Form, ErrorMessage } from 'formik';
 import '../styles/Login.scss';
-import MrLogo from '../components/img/MrCoach-Logo.png';
+import MrLogo from '../components/img/mrCoach-simbol.png';
 import { useHistory, useLocation } from 'react-router-dom';
-import useAuth from '../components/Auth/useAuth';
+// import useAuth from '../components/Auth/useAuth';
 import routes from '../Routers/Helpers';
 
 
@@ -12,9 +12,9 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const location = useLocation();
+  // const location = useLocation();
   const history = useHistory();
-  const { logRedirect } = useAuth();
+  // const { logRedirect } = useAuth(); --> se utilizará más adelante
 
   const handleLogin = async () => {
     let item = { email, password };
@@ -39,7 +39,7 @@ const Login = () => {
         } else if(result.payload.account === "alumno") {
           history.push(routes.profile);
         }
-        logRedirect(location.state?.from);
+        // logRedirect(location.state?.from);
         window.location.reload();
       } else {
         console.log("result", result)
@@ -70,7 +70,7 @@ const Login = () => {
               
               //Validación de correo
               if(!values.email){
-                mistakes.email = "Please enter your email"
+                // mistakes.email = "Please enter your email"
               } else if(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email)){
                 mistakes.email = "Format email isn't correct"
               }
@@ -108,10 +108,10 @@ const Login = () => {
                 <label for="connected" className="form-check-label">Remember me</label>
                 <span className="forgot-pass"><a href="*"><i><small>Forgot password?</small></i></a></span>
               </div>
-              <ErrorMessage name="email" component={() => (
+              {/* <ErrorMessage name="email" component={() => (
                   <small><div className="error text-danger">{error}</div></small>
                 )} 
-                /> 
+                />  */}
               <div>
                 <button type="submit" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
               </div>

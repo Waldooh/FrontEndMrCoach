@@ -12,7 +12,7 @@ import NavigateStudent from './ModalContent/NavigateStudent';
 
 const SideMenu = (props) => {
 
-  const { logOut, account } = useAuth();
+  const { logOut, account, userData, user } = useAuth();
   const [isactive, setIsactive] = useState(false);
   
   const [collapse, setCollapse] = useState(false);
@@ -20,6 +20,10 @@ const SideMenu = (props) => {
     setCollapse(!collapse);
     setTimeout(setCollapse, 5000);
   };
+
+  useEffect(() => {
+    userData();
+  }, []);
 
   useEffect(() => {
     props.onCollapse(isactive)
@@ -52,7 +56,7 @@ const SideMenu = (props) => {
         <div className="dropup">
           <button className="avatar" 
             onClick={timeOut}>
-            <img src={yo} alt="user badge" />
+            <img src={user.avatar} alt="user badge" />
           </button>
           {collapse
             ? <ul className="drop-menu">

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Container, Modal } from 'react-bootstrap';
 import '../../../styles/ModalForm.scss';
 
 
@@ -102,6 +102,7 @@ const Exercises = () => {
     img: "",
     muscle: "",
     reps: "",
+    rest: "",
     equipment: "",
     link: "",
   });
@@ -124,19 +125,30 @@ const Exercises = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between pt-4">
+      <Container className="d-flex justify-content-between py-4">
         <h1>Exercises</h1>
-        <button className="btn btn-success mr-5" onClick={()=>openAddModal()}>Add +</button>
-      </div>
+        <button 
+          className="btn btn-success mr-3 material-icons" 
+          onClick={()=>openAddModal()}
+          style={{
+            borderRadius: "50%",
+            height: "60px",
+            width: "60px",
+            boxShadow: "2px 2px 2px grey"
+          }}
+        >add
+        </button>
+      </Container>
       <table className="table table-striped ml-2">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Title</th>
+            <th scope="col">Name</th>
             <th scope="col">Img</th>
             <th scope="col">Muscle</th>
             <th scope="col">Equipment</th>
             <th scope="col">Reps</th>
+            <th scope="col">Rest</th>
             <th scope="col">Reference</th>
             <th scope="col">Action</th>
           </tr>
@@ -144,12 +156,22 @@ const Exercises = () => {
         <tbody>
           {data.map(item => (
             <tr>
-              <th scope="row">{"👈"}</th>
+              <th scope="row">{"🎯"}</th>
               <td>{item.title}</td>
-              <td>{item.img}</td>
+              <td>
+                <img 
+                  src={item.img} 
+                  alt="image icon" 
+                  style={{
+                    height: "40px",
+                    width: "40px", 
+                  }}
+                />
+              </td>
               <td>{item.muscle}</td>
               <td>{item.equipment}</td>
               <td>{item.reps}</td>
+              <td>{item.rest}</td>
               <td>{item.link}</td>
               <td>
                 <button className="btn btn-primary material-icons-outlined" onClick={()=>selectWorkout(item, "details")}>edit</button>
@@ -162,7 +184,7 @@ const Exercises = () => {
       {/* ---------Edit modal----------- */}
       <Modal show={showModal}>
         <Modal.Header>
-          <h3>Workout Details</h3>
+          <h3>Exercise Details</h3>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -248,12 +270,12 @@ const Exercises = () => {
       {/* -----------New Workout-------------- */}
       <Modal show={modalAdd}>
         <Modal.Header>
-          <h3>Insert Workout</h3>
+          <h3>New Exercise</h3>
         </Modal.Header>
         <Modal.Body>
           <div>
             <div className="label-group">
-              <label className="mb-0">Workout name:
+              <label className="mb-0">Exercise name:
                 <input 
                   className="label-control" 
                   type="text" 
@@ -262,7 +284,7 @@ const Exercises = () => {
                   onChange={handleChange}
                 /><br />
               </label>
-              <label className="mb-0">{"Muscle(s)"}:
+              <label className="mb-0">{"Target muscle(s):"}
                 <input 
                   className="label-control" 
                   type="text" 
@@ -278,38 +300,50 @@ const Exercises = () => {
                   className="label-control" 
                   type="text" 
                   name="reps"
+                  placeholder="12-12-10-8"
                   value={ejercicio ? ejercicio.reps : ""}
                   onChange={handleChange}
                 /><br />
               </label>
-              <label className="mb-0">Image:
+              <label className="mb-0">Rests:
                 <input 
                   className="label-control" 
                   type="text" 
-                  name="img" 
-                  value={ejercicio ? ejercicio.img : ""}
+                  name="rest" 
+                  placeholder={`60"`}
+                  value={ejercicio ? ejercicio.rest : ""}
                   onChange={handleChange}
                 /><br />
               </label>
             </div>
+            <label className="mb-0">Image:
+              <input 
+                className="label-control" 
+                type="file" 
+                name="img" 
+                value={ejercicio ? ejercicio.img : ""}
+                onChange={handleChange}
+              /><br />
+            </label>
             <div className="label-group">
               <label className="mb-0">Equipment:
                 <input 
                   className="label-control" 
                   type="text" 
                   name="equipment" 
+                  placeholder="Enter equipment"
                   value={ejercicio ? ejercicio.equipment : ""}
                   onChange={handleChange}
                 /><br />
               </label>
-              <label className="mb-0">{"Add a reference:"}
+              <label className="mb-0">"Reference:"
                 <input 
                   className="label-control" 
                   type="text" 
                   name="link" 
                   value={ejercicio ? ejercicio.link : ""}
                   onChange={handleChange}
-                  placeholder="www.link.com"
+                  placeholder="Add a reference link"
                 /><br />
               </label>
             </div>

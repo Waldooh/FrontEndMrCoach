@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 // import profile from '../../components/img/Yo.jpg';
-import emptyBadge from '../../components/img/blank-user-profile.png';
+// import emptyBadge from '../../components/img/blank-user-profile.png';
 import useAuth from '../../components/Auth/useAuth';
 import '../../styles/Profile.scss';
 
@@ -28,7 +28,7 @@ const Profile = () => {
               <Card.Body>
                 <h6>You haven't seen any profile yet</h6>
                 <p>Start looking for your personal trainer with our recomendations.</p>
-                <button className="mt-3">Explore</button>
+                <button className="btn btn-primary mt-3">Explore</button>
               </Card.Body>
             </Card>
 
@@ -60,7 +60,7 @@ const Profile = () => {
                     <input type="text" />
                   </label>
                 </div>
-                <button className="mt-3">Save</button>
+                <button className="btn btn-primary mt-3">Save</button>
               </Card.Body>
             </Card>
 
@@ -84,7 +84,7 @@ const Profile = () => {
                     <input type="text" />
                   </label>
                 </div>
-                <button className="mt-3">Save</button>
+                <button className="btn btn-primary mt-3">Save</button>
               </Card.Body>
             </Card>
 
@@ -108,20 +108,20 @@ const Profile = () => {
               <Col>
                 <Card className="d-flex profile-card">
                   <Card.Img 
-                    src={emptyBadge}
+                    src={user.avatar}
                     style={{
-                    padding: "1rem",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    alignSelf: "center",
+                      padding: "1rem",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      alignSelf: "center",
                     }}
                   />
                   <Card.Body>
-                    <Card.Title>{user.firstName} {user.lastName}</Card.Title>
-                    <Card.Text>{user.email}<br />account: <b>{user.account}</b></Card.Text>
-                    <Card.Text>Loving tennis forever... 💙🎾</Card.Text>
+                    <Card.Title className="mb-0">{user.firstName} {user.lastName}</Card.Title>
+                    <Card.Text><small>{user.email}</small><br />account: <b>{user.account}</b></Card.Text>
+                    <Card.Text>Since birth i'm loving tennis ever... 💙🎾</Card.Text>
                     <div className="d-flex flex-column">
-                      <button>Settings</button>
+                      <button className="btn btn-primary">Settings</button>
                     </div>
                   </Card.Body>
                 </Card>

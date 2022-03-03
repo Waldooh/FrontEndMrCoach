@@ -1,16 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 // import useAuth from './Auth/useAuth';
-import pic from './img/blank-user-profile.png';
+// import pic from './img/blank-user-profile.png';
 
 
 const CardCoach = (props) => {
   
-  const hireCoach = async (coachId) => {
+  const hireCoach = async (coachId, coachName) => {
     try {
-      console.log(coachId)
       let { userId } = JSON.parse(localStorage.getItem("user-info"));
-      console.log(userId)
 
       let info = await fetch(`http://localhost:8000/contract/${userId}`, {
         method: "POST",
@@ -20,6 +18,7 @@ const CardCoach = (props) => {
         body: JSON.stringify({coach: coachId})
       }).then(res => res.json());
       // setContract(info.payload);
+      alert(`Good choice! You have hired ${coachName}`);
       console.log("contract", info)
     } catch(err) {
       alert(err)
@@ -39,15 +38,16 @@ const CardCoach = (props) => {
             height: "22rem", 
             padding: "1rem",
             marginLeft: "1rem",
-            marginBottom: "1rem"
+            marginBottom: "1rem",
+            boxShadow: "-2px 2px 2px silver"
           }}
         >
           <Card.Img 
             // src={card.avatar}
-            src={pic}
+            src={coach.avatar}
             style={{
-              width: "130px",
-              height: "130px",
+              width: "160px",
+              height: "160px",
               borderRadius: "50%",
               objectFit: "cover",
               alignSelf: "center",
@@ -55,16 +55,16 @@ const CardCoach = (props) => {
           />
           <div className="pt-3 d-flex flex-column align-items-end" style={{height: "100%"}}>
             <div>
-              <h6 className="mb-1">{coach.firstName} {coach.lastName}</h6>
-              <p>{coach.description}</p>
+              <h6 className="mb-2">{coach.firstName} {coach.lastName}</h6>
+              <p style={{lineHeight: "100%"}}><small>{coach.description}</small></p>
             </div>
-            <div className="mt-auto mr-auto">
+            <div className="mt-auto ml-auto">
+              <button className="btn btn-info" onClick={()=>props.setOpenModal(true)}>See More</button>
               <button 
-                className="btn btn-primary"
-                onClick={()=>hireCoach(coach._id)}
+                className="btn btn-primary ml-2"
+                onClick={()=>hireCoach(coach._id, coach.firstName)}
               >Hire
               </button>
-              <button className="btn btn-info" onClick={()=>props.setOpenModal(true)}>See More</button>
             </div>
           </div>
         </Card>
