@@ -11,9 +11,9 @@ const StudentForm = () => {
     healthGoal: "",
     workoutFrecuency: "",
     metricStystem: "",
-    height: 0,
-    weight: 0,
-    age: 0,
+    height: "",
+    weight: "",
+    age: "",
     gender: "",
   });
 
