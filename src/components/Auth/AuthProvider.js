@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
 //---------------- Peticiones fetch -----------------//
   const coachesData = async () => {
-    const info = await fetch("http://localhost:8000/user", {
+    const info = await fetch("https://api.mrcoach.mx/user", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
   };
   
   const pupilsData = async () => {
-    const info = await fetch(`http://localhost:8000/contract/${account.userId}`, {
+    const info = await fetch(`https://api.mrcoach.mx/contract/${account.userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
   };
   
   const userData = async () => {
-    const info = await fetch(`http://localhost:8000/user/${account.userId}`, {
+    const info = await fetch(`https://api.mrcoach.mx/user/${account.userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const exercisesList = async () => {
-    await fetch("http://localhost:8000/workout/", {
+    await fetch("https://api.mrcoach.mx/workout/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

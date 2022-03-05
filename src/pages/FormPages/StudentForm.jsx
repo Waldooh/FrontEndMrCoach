@@ -31,7 +31,7 @@ const StudentForm = () => {
 
     if (activeTab === 6) {
       try {
-        let result = await fetch(`http://localhost:8000/user/${studentId}`, {
+        let result = await fetch(`https://api.mrcoach.mx/user/${studentId}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

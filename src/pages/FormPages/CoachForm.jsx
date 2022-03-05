@@ -32,7 +32,7 @@ const CoachForm = () => {
 
     if (activeTab === 6) {
       try {
-        let result = await fetch(`http://localhost:8000/user/${coachId}`, {
+        let result = await fetch(`https://api.mrcoach.mx/user/${coachId}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

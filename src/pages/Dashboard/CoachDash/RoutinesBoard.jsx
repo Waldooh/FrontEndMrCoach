@@ -11,7 +11,7 @@ const Routines = () => {
   const { exercises, exercisesList, account, pupils, pupilsData } = useAuth();
   
   const getRoutines = async () => {
-    await fetch("http://localhost:8000/routines/", {
+    await fetch("https://api.mrcoach.mx/routines/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const Routines = () => {
   
   // ----------- Petición DELETE -------------- //
   const deleteRoutine = async () => {
-    await fetch(`http://localhost:8000/routines/${rutina._id}`, {
+    await fetch(`https://api.mrcoach.mx/routines/${rutina._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const Routines = () => {
     // ----------- Petición CREATE -------------- //
   const postRoutine = async () => {
     console.log(rutina)
-    await fetch("http://localhost:8000/routines/", {
+    await fetch("https://api.mrcoach.mx/routines/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const Routines = () => {
 
    // ----------- Petición UPDATE -------------- //
   const patchRoutine = async () => {
-    await fetch(`http://localhost:8000/routines/${rutina._id}`, {
+    await fetch(`https://api.mrcoach.mx/routines/${rutina._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const Exercises = () => {
   const [data, setData] = useState([]);
   
   const getWorkout = async () => {
-    await fetch("http://localhost:8000/workout/", {
+    await fetch("https://api.mrcoach.mx/workout/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const Exercises = () => {
   }, []);
 
   const postWorkout = async () => {
-    await fetch("http://localhost:8000/workout/", {
+    await fetch("https://api.mrcoach.mx/workout/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const Exercises = () => {
   };
 
   const patchWorkout = async () => {
-    await fetch(`http://localhost:8000/workout/${ejercicio._id}`, {
+    await fetch(`https://api.mrcoach.mx/workout/${ejercicio._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const Exercises = () => {
   };
 
   const deleteWorkout = async () => {
-    await fetch(`http://localhost:8000/workout/${ejercicio._id}`, {
+    await fetch(`https://api.mrcoach.mx/workout/${ejercicio._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

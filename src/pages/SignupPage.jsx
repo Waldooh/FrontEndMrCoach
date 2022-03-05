@@ -70,7 +70,7 @@ const SignupPage = (props) => {
     console.log(item)
 
     try {
-      let result = await fetch("http://localhost:8000/auth/signup", {
+      let result = await fetch("https://api.mrcoach.mx/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

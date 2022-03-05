@@ -19,7 +19,7 @@ const Login = () => {
   const handleLogin = async () => {
     let item = { email, password };
     try {
-      let result = await fetch("http://localhost:8000/auth/login", {
+      let result = await fetch("https://api.mrcoach.mx/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

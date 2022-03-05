@@ -1,6 +1,0 @@
-applications:
-- name: mrCoach
-  path: build/
-  memory: 80M
-  stack: cflinuxfs3
-  buildpack: staticfile_buildpack

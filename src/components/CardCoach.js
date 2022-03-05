@@ -10,7 +10,7 @@ const CardCoach = (props) => {
     try {
       let { userId } = JSON.parse(localStorage.getItem("user-info"));
 
-      let info = await fetch(`http://localhost:8000/contract/${userId}`, {
+      let info = await fetch(`https://api.mrcoach.mx/contract/${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
