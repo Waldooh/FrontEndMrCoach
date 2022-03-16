@@ -37,7 +37,7 @@ const LandingPage = () => {
       <div className="hero-section">
         <div className="hero-content">
           <h3>It never get easier you get  ¡stronger!</h3>
-          {/* <h2>Build your ideal self with your ideal coach</h2> */}
+          <h2>Build your ideal self with your ideal coach</h2>
           <p>
             Find your personal trainer who want's you to achive your goals. A coach for you
             to leade you, to motivate you, to push you until you get it! 
